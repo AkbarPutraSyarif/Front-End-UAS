@@ -4,8 +4,8 @@
 }
 
 body {
-    background-image: url(/Picture/cookingclass.jpg);
-    background-attachment: fixed;
+    background-color: rgb(252, 196, 124);
+
 }
 
 /* Navbar Opening */
@@ -67,28 +67,40 @@ body {
     border-radius: 40px;
 }
 
-.modal #subscribeEmail:focus{
+.modal #subscribeEmail:focus {
     box-shadow: 0 2px 20px rgb(253, 124, 124);
 }
+
 
 /* Navbar Closing */
 
 /* Section Opening */
-
-section {
-    border: 2px solid white;
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 1);
-    padding: 20px 20px;
+section h1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-section #name:focus,
-section #email:focus,
-section #date:focus,
-section #time:focus{
-    box-shadow: 0 2px 20px rgb(253, 124, 124);
+.col i {
+    color: rgb(227, 227, 40);
 }
 
+.col h5 {
+    font-weight: 600;
+}
+
+section .gambar {
+    max-height: 377px;
+}
+
+section .card {
+    transition: transform 0.3s ease;
+}
+
+section .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+}
 
 /* Footer */
 
@@ -153,4 +165,16 @@ footer p {
 }
 
 @media (max-width: 768px) {
+    .about-section {
+        padding: 20px;
+    }
+
+    .about-section .btn {
+        margin-bottom: 20px;
+    }
+
+    .Food-section {
+        margin: 20px;
+    }
+
 }
