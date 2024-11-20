@@ -4,7 +4,7 @@
 }
 
 body {
-    background-image: url(/Picture/map.jpg);
+    background-image: url(/assets/images/map.jpg);
     background-size: cover;
     background-attachment: fixed;
 }

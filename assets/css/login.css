@@ -1,0 +1,9 @@
+body {
+    background-image: url(/assets/images/page.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    object-fit: cover;
+    width: 100%;
+}
