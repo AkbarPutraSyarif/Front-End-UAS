@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Dietry | Profile</title>
     <link rel="shortcut icon" href="/assets/images/logo.jpg" type="image/x-icon">
     <!-- Link Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Link Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Link CSS -->
-    <link rel="stylesheet" href="/assets/css/contact.css">
+    <link rel="stylesheet" href="/assets/css/profile.css">
     <!-- Link icon footer -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -21,57 +21,37 @@
     <!-- Navbar -->
     <nav class="navbar sticky-top navbar-expand-lg">
         <div class="container-fluid">
-            <!-- Logo -->
             <a class="navbar-brand" href="/view/home.html">
                 <img src="/assets/images/logo-remove2.png" alt="Logo" width="50">
                 <span>Dietry</span>
             </a>
-
-            <!-- Tombol Collapse untuk Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRestaurant"
                 aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <!-- Konten Navbar -->
             <div class="collapse navbar-collapse" id="navbarRestaurant">
-                <!-- Menu Utama (Tengah) -->
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/view/home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/view/about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/view/food.html">Food Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/view/contact.html">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/view/class_cooking.html">Class Cooking</a>
-                    </li>
-                    <!-- Tombol Subscribe menggunakan <a> -->
+                    <li class="nav-item"><a class="nav-link" href="/view/home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/view/about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/view/food.html">Food Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/view/contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/view/class_cooking.html">Class Cooking</a></li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#subscribeModal">
                             Subscribe
                         </a>
                     </li>
                 </ul>
-
-                <!-- Login dan Search (Kanan) -->
                 <div class="d-flex flex-column flex-lg-row justify-content-end login">
-                    <!-- Account Dropdown -->
                     <div class="dropdown">
                         <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <i class="fa-solid fa-user"></i> <span>Account</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/view/profile.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="/view/login/login.html">Login</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="/view/login/login.html">Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -79,7 +59,6 @@
         </div>
     </nav>
 
-    <!-- Subscribe -->
     <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -101,36 +80,61 @@
         </div>
     </div>
 
-    <!-- Section Contact Us -->
+    <!-- Profile Section -->
     <div class="container my-5">
-        <section class="col-md-8 col-lg-6 mx-auto">
-            <h2 class="text-center mb-4">Contact Us</h2>
-            <div class="row g-4 justify-content-center">
-                <!-- Contact Form -->
-                <div class="col-lg-11">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#account-general"
+                                    role="tab">Account</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="account-general">
+                                <div class="text-center mb-4">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" id="profile-picture"
+                                        alt="Profile Picture" class="rounded-circle ui-w-80">
+                                    <div class="mt-2">
+                                        <label class="btn btn-sm btn btn-danger upload-photo-btn">
+                                            Upload Photo
+                                            <input type="file" id="upload-photo" class="account-settings-fileinput">
+                                        </label>
+                                        <button type="button" class="btn btn-default btn-sm"
+                                            onclick="resetPhoto()">Reset</button>
+                                    </div>
+                                </div>
+                                <form>
+                                    <div class="row mb-3">
+                                        <label for="username" class="col-sm-3 col-form-label">Username</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="username" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="email" class="col-sm-3 col-form-label">E-mail</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" id="email" class="form-control"
+                                                value="">
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-danger">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Your Message</label>
-                            <textarea class="form-control" id="message" rows="5" placeholder="Write your message"
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-info w-100">Send Message</button>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 
-
-
+    <!-- Footer Section -->
     <footer>
         <ul class="sosmed">
             <li><a href=""><ion-icon name="logo-facebook"></ion-icon></a></li>
@@ -145,8 +149,8 @@
         <p>&copy; 2024 Dietry. All rights reserved.</p>
     </footer>
 
-    <!-- Link Bootstrap JS and Popper.js (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/profile.js"></script>
 </body>
 
 </html>

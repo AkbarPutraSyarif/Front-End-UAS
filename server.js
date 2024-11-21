@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const authRoutes = require('./routes/user.js'); // Import authentication routes
-const middleware = require('./middleware/middleware.js'); // Import the middleware module
+const authRoutes = require('./routes/user.js'); 
+const middleware = require('./middleware/middleware.js'); 
 
 // Initialize Express app
 const app = express();
@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/registration', { useNewUrlParser: tr
     .catch((err) => console.log(err));
 
 // Use authentication routes
-app.use('/api', authRoutes); // This will prefix the routes with /api
+app.use('/api', authRoutes); 
 
 // Start the server
 const PORT = process.env.PORT || 5000;

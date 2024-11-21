@@ -73,13 +73,23 @@
                             <li><a class="dropdown-item" href="#">Logout</a></li>
                         </ul>
                     </div>
-                    <a href="#" class="btn btn-outline-primary mb-2 mb-lg-0">
+                    <a href="#" class="btn btn-outline-primary mb-2 mb-lg-0" data-bs-toggle="collapse"
+                        data-bs-target="#searchBar" aria-expanded="false" aria-controls="searchBar">
                         <i class="fa-solid fa-search"></i> <span>Search</span>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
+
+    <div class="collapse" id="searchBar">
+        <div class="container py-3">
+            <form class="d-flex justify-content-center">
+                <input type="text" class="form-control w-50" placeholder="Search for food..." aria-label="Search">
+                <button class="btn btn-danger ms-2" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
 
 
     <!-- Subscribe -->
