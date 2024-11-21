@@ -1,6 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const User = require('../model/user.js'); // Import the User model
+const User = require('../model/user.js');
 const router = express.Router();
 
 // Registration API
