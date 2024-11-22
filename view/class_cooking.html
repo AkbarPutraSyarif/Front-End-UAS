@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Cooking</title>
+    <link rel="shortcut icon" href="/assets/images/logo.jpg" type="image/x-icon">
+    <!-- Link Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="/assets/css/class_cooking.css">
+    <!-- Link icon footer -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar sticky-top navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/view/home.html">
+                <img src="/assets/images/logo-remove2.png" alt="Logo" width="50">
+                <span>Dietry</span>
+            </a>
+
+            <!-- Tombol Collapse untuk Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRestaurant"
+                aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Konten Navbar -->
+            <div class="collapse navbar-collapse" id="navbarRestaurant">
+                <!-- Menu Utama (Tengah) -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/food.html">Food Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/class_cooking.html">Class Cooking</a>
+                    </li>
+                    <!-- Tombol Subscribe menggunakan <a> -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-bs-toggle="modal"
+                            data-bs-target="#subscribeModal">
+                            Subscribe
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Login dan Search (Kanan) -->
+                <div class="d-flex flex-column flex-lg-row justify-content-end login">
+                    <!-- Account Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> <span>Account</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/view/profile.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Subscribe -->
+    <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="subscribeModalLabel">Subscribe Dietry</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="subscribeEmail" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="subscribeEmail" placeholder="Enter your email"
+                                required>
+                        </div>
+                        <button type="submit" class="btn btn-info w-100">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Section Book Table -->
+    <div class="container my-5">
+        <section class="col-md-8 col-lg-6 mx-auto">
+            <h2 class="text-center mb-4">Free Class Cooking</h2>
+            <div class="row g-4 justify-content-center">
+                <!-- Contact Form -->
+                <div class="col-lg-11">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Select Date</label>
+                            <input type="date" class="form-control" id="date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="time" class="form-label">Select Time</label>
+                            <input type="time" class="form-control" id="time" required>
+                        </div>
+                        <button type="submit" class="btn btn-info w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+
+    <footer>
+        <ul class="sosmed">
+            <li><a href=""><ion-icon name="logo-facebook"></ion-icon></a></li>
+            <li><a href=""><ion-icon name="logo-twitter"></ion-icon></a></li>
+            <li><a href=""><ion-icon name="logo-instagram"></ion-icon></a></li>
+        </ul>
+        <ul class="menu">
+            <li><a href="">Kebijakan Privasi</a></li>
+            <li><a href="">Ketentuan Layanan</a></li>
+            <li><a href="/view/contact.html">Hubungi Kami</a></li>
+        </ul>
+        <p>&copy; 2024 Dietry. All rights reserved.</p>
+    </footer>
+
+    <!-- Link Bootstrap JS and Popper.js (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

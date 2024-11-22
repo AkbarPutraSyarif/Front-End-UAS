@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="shortcut icon" href="/assets/images/logo.jpg" type="image/x-icon">
+    <!-- Link Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="/assets/css/about.css">
+    <!-- Link icon footer -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar sticky-top navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/view/home.html">
+                <img src="/assets/images/logo-remove2.png" alt="Logo" width="50">
+                <span>Dietry</span>
+            </a>
+
+            <!-- Tombol Collapse untuk Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRestaurant"
+                aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Konten Navbar -->
+            <div class="collapse navbar-collapse" id="navbarRestaurant">
+                <!-- Menu Utama (Tengah) -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/food.html">Food Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/class_cooking.html">Class Cooking</a>
+                    </li>
+                    <!-- Tombol Subscribe menggunakan <a> -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#subscribeModal">
+                            Subscribe
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Login dan Search (Kanan) -->
+                <div class="d-flex flex-column flex-lg-row justify-content-end login">
+                    <!-- Account Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> <span>Account</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/view/login/login.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Subscribe -->
+    <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="subscribeModalLabel">Subscribe Dietry</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="subscribeEmail" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="subscribeEmail" placeholder="Enter your email"
+                                required>
+                        </div>
+                        <button type="submit" class="btn btn-info w-100">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Opening  -->
+    <div class="Opening-section">
+        <div class="row text-start">
+            <div class="col-md-6 align-self-center">
+                <div class="Opening-right text-start">
+                    <h2 class="title-Opening">About Us</h2>
+                    <p>Dietry adalah platform yang dirancang untuk membantu Anda mencapai tujuan kesehatan dan kebugaran
+                        melalui berbagai pilihan menu diet yang sehat dan bergizi. Luasnya aneka resep yang terdapat di
+                        dalam Dietry dikembangkan oleh profesional dalam bidangnya,
+                        seperti koki bintang 5 dan pakar nutrisi yang bekerja sama dan menghasilkan resep makanan yang
+                        lezat dan bernutrisi tinggi. Setiap resep kami juga dicoba di dapur uji Dietry yang sudah
+                        memenuhi standar internasional agar dapat memastikan resep yang lezat dan sehat. </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="Opening-gambar">
+                    <img src="/assets/images/logo.jpg" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chef Dietry Section -->
+    <div class="Food-section text-center py-5">
+        <h1 class="mb-4">Chef Dietry</h1>
+        <div id="chefCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Carousel Item 1 -->
+                <div class="carousel-item active">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <img src="/assets/images/alysia-bebel-square-74c02ff5f27d4bfd984b032627b49765.webp"
+                                class="d-block w-100 rounded" alt="Emily">
+                            <h5 class="mt-3">Emily</h5>
+                            <p>Pembuat Ide dan rancangan makanan sehat</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel Item 2 -->
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <img src="/assets/images/Danielle-DeAngelis-square-93730388f3474ca39a4d39d1c46db6a4.webp"
+                                class="d-block w-100 rounded" alt="Rose">
+                            <h5 class="mt-3">Rose</h5>
+                            <p>Membantu pendirian perusahaan Dietry</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel Item 3 -->
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <img src="/assets/images/matthew-francis-957269e35a434cc18a0e4f085bf4c8b1.webp"
+                                class="d-block w-100 rounded" alt="Daniel">
+                            <h5 class="mt-3">Daniel</h5>
+                            <p>Pembangun atau pendiri Dietry</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#chefCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#chefCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+
+    <footer>
+        <ul class="sosmed">
+            <li><a href=""><ion-icon name="logo-facebook"></ion-icon></a></li>
+            <li><a href=""><ion-icon name="logo-twitter"></ion-icon></a></li>
+            <li><a href=""><ion-icon name="logo-instagram"></ion-icon></a></li>
+        </ul>
+        <ul class="menu">
+            <li><a href="">Kebijakan Privasi</a></li>
+            <li><a href="">Ketentuan Layanan</a></li>
+            <li><a href="/view/contact.html">Hubungi Kami</a></li>
+        </ul>
+        <p>&copy; 2024 Dietry. All rights reserved.</p>
+    </footer>
+
+    <!-- Link Bootstrap JS and Popper.js (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/about.js"></script>
+</body>
+
+</html>
