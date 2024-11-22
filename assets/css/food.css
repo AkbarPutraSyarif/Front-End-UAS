@@ -71,6 +71,23 @@ body {
     box-shadow: 0 2px 20px rgb(253, 124, 124);
 }
 
+/* Styling untuk Search Bar */
+#searchBar {
+    background-color: rgb(248, 232, 217);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#searchBar input {
+    max-width: 500px;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+#searchBar button {
+    border-radius: 20px;
+    font-size: 1rem;
+}
 
 /* Navbar Closing */
 
