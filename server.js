@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/registration', { useNewUrlParser: tr
     .catch((err) => console.log(err));
 
 // Use authentication routes
-app.use('/api', authRoutes); // This will prefix the routes with /api
+app.use('/api', authRoutes); 
 
 // Start the server
 const PORT = process.env.PORT || 5000;
