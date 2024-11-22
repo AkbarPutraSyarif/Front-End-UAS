@@ -1,11 +1,12 @@
 angular.module('authApp', [])
 .controller('AuthController', function ($scope, $http) {
     $scope.email = '';
+    $scope.username = '';
     $scope.password = '';
     $scope.passwordConfirm = '';
 
     $scope.register = function () {
-        if (!$scope.email || !$scope.password || !$scope.passwordConfirm) {
+        if ( !$scope.username ||!$scope.email || !$scope.password || !$scope.passwordConfirm) {
             alert('Please fill in all fields!');
             return;
         }
@@ -16,6 +17,7 @@ angular.module('authApp', [])
         }
 
         const userData = {
+            username: $scope.username,
             email: $scope.email,
             password: $scope.password
         };
