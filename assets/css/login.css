@@ -7,3 +7,8 @@ body {
     object-fit: cover;
     width: 100%;
 }
+
+.loginadmin a{
+    text-decoration: none;
+    color: black;
+}

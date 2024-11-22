@@ -1,12 +1,9 @@
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require('express');
 
-const middleware = (app) => {
-    // Use middleware for JSON parsing
-    app.use(bodyParser.json());
-    
-    // Use CORS middleware for cross-origin requests
-    app.use(cors());
+module.exports = (app) => {
+    // Middleware untuk parsing JSON
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+
+    // Tambahkan middleware lainnya jika diperlukan
 };
-
-module.exports = middleware;
