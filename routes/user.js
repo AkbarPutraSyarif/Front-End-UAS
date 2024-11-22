@@ -1,9 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const User = require('../model/user.js'); // Import the User model
+const User = require('../model/user.js');
 const router = express.Router();
 
-// Registration API
+// Registration 
 router.post('/register', async (req, res) => {
     const { email, password } = req.body;
 
@@ -12,7 +12,7 @@ router.post('/register', async (req, res) => {
     }
 
     try {
-        // Check if email already exists
+        // Check email
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ success: false, message: 'Email already registered' });
@@ -22,7 +22,6 @@ router.post('/register', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Save new user to MongoDB
         const newUser = new User({
             email,
             password: hashedPassword
@@ -46,19 +45,17 @@ router.post('/login', async (req, res) => {
     }
 
     try {
-        // Check if email exists
+        // Check email 
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ success: false, message: 'Invalid email or password' });
         }
 
-        // Compare password with the hashed password in the database
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ success: false, message: 'Invalid email or password' });
         }
 
-        // If login is successful, return a success message
         res.status(200).json({ success: true, message: 'Login successful' });
 
     } catch (error) {

@@ -20,12 +20,11 @@ angular.module('authApp', [])
             password: $scope.password
         };
 
-        // Send data to the backend via POST request
         $http.post('http://localhost:5000/api/register', userData)
             .then(function (response) {
                 if (response.data.success) {
                     alert('Registration successful!');
-                    window.location.href = '/login.html'; // Redirect to login
+                    window.location.href = '/';
                 } else {
                     alert('Registration failed: ' + response.data.message);
                 }

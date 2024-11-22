@@ -2,9 +2,10 @@
   "name": "front-end-uas",
   "version": "1.0.0",
   "description": "��#\u0000 \u0000F\u0000r\u0000o\u0000n\u0000t\u0000-\u0000E\u0000n\u0000d\u0000-\u0000U\u0000A\u0000S\u0000\r\u0000 \u0000",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,8 @@
     "express": "^4.21.1",
     "express-session": "^1.18.1",
     "mongoose": "^8.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
