@@ -1,60 +1,29 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const authRoutes = require('./routes/user.js'); 
-const middleware = require('./middleware/middleware.js'); 
+const generalRoutes = require('./routes/allRoutes.js'); // Rute semua
+const userRoutes = require('./routes/user.js'); // Rute user
+const middleware = require('./middleware/middleware.js'); // Middleware
 const app = express();
 
-// middleware
-middleware(app); 
+// Middleware kustom
+middleware(app);
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/registration', )
+mongoose.connect('mongodb://localhost:27017/registration')
     .then(() => console.log('MongoDB connected'))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log('Database connection error:', err));
 
-app.use('/api', authRoutes); 
+// Gunakan rute
+app.use('/', generalRoutes);
+app.use('/api', userRoutes);
 
 app.use(express.static(__dirname + '/assets'));
 app.use(express.static(__dirname + '/assets/css'));
 app.use(express.static(__dirname + '/controller'));
 app.use(express.static(__dirname + '/view'));
 
-
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/login.html"); 
-});
-
-app.get("/registrasi", (req, res) => {
-    res.sendFile(__dirname + "/view/registrasi.html");
-});
-
-app.get("/home", (req, res) => {
-    res.sendFile(__dirname + "/view/home.html");
-});
-
-app.get("/about", (req, res) => {
-    res.sendFile(__dirname + "/view/about.html");
-});
-
-app.get("/class_cooking", (req, res) => {
-    res.sendFile(__dirname + "/view/class_cooking.html");
-});
-
-app.get("/contact", (req, res) => {
-    res.sendFile(__dirname + "/view/contact.html");
-});
-
-app.get("/food", (req, res) => {
-    res.sendFile(__dirname + "/view/food.html");
-});
-
-app.get("/profile", (req, res) => {
-    res.sendFile(__dirname + "/view/profile.html");
-});
-
-
-// Start the server
+// Jalanin server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
 });
