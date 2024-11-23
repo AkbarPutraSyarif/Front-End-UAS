@@ -26,7 +26,7 @@ angular.module('authApp', [])
             .then(function (response) {
                 if (response.data.success) {
                     alert('Registration successful!');
-                    window.location.href = '/';
+                    window.location.href = '/login';
                 } else {
                     alert('Registration failed: ' + response.data.message);
                 }
