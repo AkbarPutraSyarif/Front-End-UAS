@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="foodApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Admin</title>
+    <!-- Link boostrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="/food.css">
+    <!-- Link icon footer -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+
+<body ng-controller="foodController">
+    <!-- Tambahin Food -->
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Tambahkan Food</h2>
+        <form ng-submit="addFood()">
+            <div class="mb-3">
+                <label for="newTitle" class="form-label">Food Title</label>
+                <input type="text" id="newTitle" ng-model="newTitle" class="form-control" placeholder="Judul Food"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="newImage" class="form-label">Image</label>
+                <input type="text" id="newImage" ng-model="newImage" class="form-control"
+                    placeholder="Images Url / Assets" required>
+            </div>
+            <div class="mb-3">
+                <label for="newRating" class="form-label">Rating</label>
+                <input type="number" id="newRating" ng-model="newRating" class="form-control" placeholder="Rating"
+                    required min="1" max="5">
+            </div>
+            <div class="mb-3">
+                <label for="newDescription" class="form-label">Description food</label>
+                <input type="text" id="newDescription" ng-model="newDescription" class="form-control"
+                    placeholder="Deskripsi food anda" required>
+            </div>
+            <div class="mb-3">
+                <label for="newCategory" class="form-label">Category</label>
+                <select id="newCategory" ng-model="newCategory" class="form-select" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option ng-repeat="category in categories" value="{{ category }}">{{ category }}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="newUrl" class="form-label">Recipe URL</label>
+                <input type="url" id="newUrl" ng-model="newUrl" class="form-control" placeholder="Url resep" required>
+            </div>
+            <button type="submit" class="btn btn-danger w-100">Add Food</button>
+        </form>
+    </div>
+
+    <!-- Modal buat edit Food -->
+    <div class="modal fade" tabindex="-1" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Food</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="editTitle" class="form-label">Food Title</label>
+                            <input type="text" id="editTitle" ng-model="editData.title" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editImage" class="form-label">Image URL</label>
+                            <input type="text" id="editImage" ng-model="editData.image" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editRating" class="form-label">Rating</label>
+                            <input type="number" id="editRating" ng-model="editData.rating" class="form-control"
+                                required min="1" max="5">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDescription" class="form-label">Description</label>
+                            <input type="text" id="editDescription" ng-model="editData.description" class="form-control"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCategory" class="form-label">Category</label>
+                            <input type="text" id="editCategory" ng-model="editData.category" class="form-control"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUrl" class="form-label">Recipe URL</label>
+                            <input type="url" id="editUrl" ng-model="editData.url" class="form-control" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" ng-click="updateFood()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Display Foods -->
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Food List</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col" ng-repeat="food in foods">
+                <div class="card h-100">
+                    <img ng-src="{{ food.image }}" class="card-img-top" alt="{{ food.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ food.title }}</h5>
+                        <p class="card-text"><i class="fa-solid fa-star" style="color: yellow;"></i> Rating: {{
+                            food.rating }}</p>
+                        <p class="card-text">Category: {{ food.category }}</p>
+                        <p class="card-text">{{ food.description }}</p>
+                        <a ng-href="{{ food.url }}" target="_blank" class="btn btn-danger">View Recipe</a>
+                        <button class="btn btn-warning " ng-click="editFood(food)">Edit</button>
+                        <button class="btn btn-danger " ng-click="deleteFood(food._id)">Delete</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin menghapus item ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" ng-click="confirmDelete()">Hapus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap JS and AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/foodController.js"></script>
+</body>
+
+</html>

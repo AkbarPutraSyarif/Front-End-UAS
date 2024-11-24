@@ -2,10 +2,19 @@ angular.module('authApp', [])
 .controller('LoginController', function ($scope, $http) {
     $scope.email = '';
     $scope.password = '';
+    $scope.modalMessage = ''; 
 
+    // Munculin modal atau message
+    $scope.showModal = function (message) {
+        $scope.modalMessage = message;
+        const modalElement = new bootstrap.Modal(document.getElementById('messageModal'));
+        modalElement.show();
+    };
+
+    // Login auth
     $scope.login = function () {
         if (!$scope.email || !$scope.password) {
-            alert('Please fill in both fields!');
+            $scope.showModal('Please fill in both fields!');
             return;
         }
 
@@ -17,14 +26,16 @@ angular.module('authApp', [])
         $http.post('http://localhost:5000/api/login', userData)
             .then(function (response) {
                 if (response.data.success) {
-                    alert('Login successful!');
-                    window.location.href = '/home';
+                    $scope.showModal('Login successful!');
+                    setTimeout(() => {
+                        window.location.href = '/home';
+                    }, 2000); 
                 } else {
-                    alert('Login failed: ' + response.data.message);
+                    $scope.showModal('Login failed: ' + response.data.message);
                 }
             })
             .catch(function (error) {
-                alert('Error: ' + error.message);
+                $scope.showModal('Error: ' + error.message);
             });
     };
 });
