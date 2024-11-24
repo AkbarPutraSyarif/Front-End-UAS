@@ -1,24 +1,29 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const authRoutes = require('./routes/user.js'); 
-const middleware = require('./middleware/middleware.js'); 
-
-// Initialize Express app
+const generalRoutes = require('./routes/allRoutes.js'); // Rute semua
+const userRoutes = require('./routes/user.js'); // Rute user
+const middleware = require('./middleware/middleware.js'); // Middleware
 const app = express();
 
-// Apply middleware
-middleware(app); // Apply the middleware functions
+// Middleware kustom
+middleware(app);
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/registration', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/registration')
     .then(() => console.log('MongoDB connected'))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log('Database connection error:', err));
 
-// Use authentication routes
-app.use('/api', authRoutes); 
+// Gunakan rute
+app.use('/', generalRoutes);
+app.use('/api', userRoutes);
 
-// Start the server
+app.use(express.static(__dirname + '/assets'));
+app.use(express.static(__dirname + '/assets/css'));
+app.use(express.static(__dirname + '/controller'));
+app.use(express.static(__dirname + '/view'));
+
+// Jalanin server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
 });

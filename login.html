@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="shortcut icon" href="/assets/images/logo.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Link Css -->
-    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="/login.css">
 </head>
 
 <body ng-controller="LoginController">
+    <div class="loginadmin position-absolute top-0 end-0 m-3 p-2 ">
+        <a href="/admin/admin.html" class="btn btn-danger">Admin</a>
+    </div>
     <div class="container d-flex align-items-center justify-content-center vh-100">
         <div class="card p-4 shadow" style="max-width: 400px; width: 100%;">
             <h3 class="text-center mb-4">Login</h3>
@@ -32,7 +35,7 @@
 
                 <!-- Register Link -->
                 <div class="mb-3 text-center">
-                    <p>Buat Account? <a href="/view/registrasi.html">Register</a></p>
+                    <p>Buat Account? <a href="registrasi">Register</a></p>
                 </div>
 
                 <!-- Submit Button -->
@@ -47,7 +50,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="/controller/loginController.js"></script>
+    <script src="/loginController.js"></script>
 </body>
 
 </html>

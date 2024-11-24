@@ -1,0 +1,27 @@
+body, html {
+    height: 100%;
+    background-image: url(images/page.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.admin-title {
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.admin-button {
+    background-color: rgb(252, 196, 124);
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 15px;
+    width: 300px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+
+.admin-button:hover {
+    background-color: rgb(216, 150, 62);
+    color: black;
+}
