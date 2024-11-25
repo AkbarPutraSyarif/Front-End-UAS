@@ -67,11 +67,6 @@ body {
     border-radius: 40px;
 }
 
-.modal #subscribeEmail:focus {
-    box-shadow: 0 2px 20px rgb(253, 124, 124);
-}
-
-
 /* Navbar Closing */
 
 /* About Section */

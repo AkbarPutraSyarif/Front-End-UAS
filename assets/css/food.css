@@ -67,10 +67,6 @@ body {
     border-radius: 40px;
 }
 
-.modal #subscribeEmail:focus {
-    box-shadow: 0 2px 20px rgb(253, 124, 124);
-}
-
 /* Styling untuk Search Bar */
 #searchBar {
     background-color: rgb(248, 232, 217);
@@ -87,6 +83,10 @@ body {
 #searchBar button {
     border-radius: 20px;
     font-size: 1rem;
+}
+
+#search:focus{
+    box-shadow: 0 2px 20px rgb(253, 124, 124);
 }
 
 /* Navbar Closing */
@@ -119,6 +119,25 @@ section .card:hover {
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+
+/* foodAdmin.html */
+.modal #editTitle:focus,
+.modal #editImage:focus,
+.modal #editRating:focus,
+.modal #editDescription:focus,
+.modal #editCategory:focus,
+.modal #editUrl:focus {
+    box-shadow: 0 2px 20px rgb(253, 124, 124);
+}
+
+.container #newTitle:focus,
+.container #newImage:focus,
+.container #newRating:focus,
+.container #newDescription:focus,
+.container #newCategory:focus,
+.container #newUrl:focus {
+    box-shadow: 0 2px 20px rgb(253, 124, 124);
+}
 /* Footer */
 
 footer {

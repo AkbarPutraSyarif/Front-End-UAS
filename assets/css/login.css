@@ -8,7 +8,14 @@ body {
     width: 100%;
 }
 
-.loginadmin a{
+.loginadmin a {
     text-decoration: none;
     color: black;
+}
+
+.container #email:focus,
+.container #password:focus,
+.container #username:focus,
+.container #passwordConfirm:focus {
+    box-shadow: 0 2px 20px rgb(253, 124, 124);
 }
