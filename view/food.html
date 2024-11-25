@@ -51,12 +51,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="class_cooking.html">Class Cooking</a>
                     </li>
-                    <!-- Tombol Subscribe menggunakan -->
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#subscribeModal">
-                            Subscribe
-                        </a>
-                    </li>
                 </ul>
 
                 <!-- Login dan Search (Kanan) -->
@@ -82,43 +76,21 @@
         </div>
     </nav>
 
+    <!-- Search Food -->
     <div class="collapse" id="searchBar">
         <div class="container py-3">
             <form class="d-flex justify-content-center">
-                <input type="text" class="form-control w-50" placeholder="Search for food..." aria-label="Search">
-                <button class="btn btn-danger ms-2" type="submit">Search</button>
+                <input type="text" id="search"class="form-control w-50" placeholder="Search for food..." 
+                       ng-model="searchQuery" aria-label="Search">
             </form>
         </div>
     </div>
-
-
-    <!-- Subscribe -->
-    <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="subscribeModalLabel">Subscribe Dietry</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="subscribeEmail" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="subscribeEmail" placeholder="Enter your email"
-                                required>
-                        </div>
-                        <button type="submit" class="btn btn-danger w-100">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
+    <!-- Food Menu -->
     <section class="container py-5">
         <h1 class="text-center mb-5">Our Food Menu</h1>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 py-4">
-            <!-- AngularJS loop for food items -->
-            <div class="col" ng-repeat="food in foods">
+            <div class="col" ng-repeat="food in foods | filter: { title: searchQuery }">
                 <div class="card h-100">
                     <img ng-src="{{ food.image }}" class="card-img-top gambar" alt="{{ food.title }}">
                     <div class="card-body">
@@ -134,6 +106,7 @@
             </div>
         </div>
     </section>
+    
     
     <footer>
         <ul class="sosmed">
