@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="contactApp">
 
 <head>
     <meta charset="UTF-8">
@@ -17,61 +17,34 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body>
+<body ng-controller="contactController">
     <!-- Navbar -->
     <nav class="navbar sticky-top navbar-expand-lg">
         <div class="container-fluid">
-            <!-- Logo -->
             <a class="navbar-brand" href="home.html">
                 <img src="images/logo-remove2.png" alt="Logo" width="50">
                 <span>Dietry</span>
             </a>
-
-            <!-- Tombol Collapse untuk Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRestaurant"
                 aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <!-- Konten Navbar -->
             <div class="collapse navbar-collapse" id="navbarRestaurant">
-                <!-- Menu Utama (Tengah) -->
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="food.html">Food Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="class_cooking.html">Class Cooking</a>
-                    </li>
-                    <!-- Tombol Subscribe menggunakan <a> -->
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#subscribeModal">
-                            Subscribe
-                        </a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="food.html">Food Menu</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="class_cooking.html">Class Cooking</a></li>
                 </ul>
-
-                <!-- Login dan Search (Kanan) -->
                 <div class="d-flex flex-column flex-lg-row justify-content-end login">
-                    <!-- Account Dropdown -->
                     <div class="dropdown">
                         <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <i class="fa-solid fa-user"></i> <span>Account</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="/">Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -79,54 +52,121 @@
         </div>
     </nav>
 
-    <!-- Subscribe -->
-    <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="subscribeModalLabel">Subscribe Dietry</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="subscribeEmail" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="subscribeEmail" placeholder="Enter your email"
-                                required>
-                        </div>
-                        <button type="submit" class="btn btn-info w-100">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Section Contact Us -->
     <div class="container my-5">
         <section class="col-md-8 col-lg-6 mx-auto">
             <h2 class="text-center mb-4">Contact Us</h2>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-11">
-                    <form>
+                    <form ng-submit="sendMessage()">
                         <div class="mb-3">
                             <label for="name" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name"
+                                ng-model="contactForm.name" required>
                         </div>
                         <div class="mb-3">
                             <label for="message" class="form-label">Your Message</label>
                             <textarea class="form-control" id="message" rows="5" placeholder="Write your message"
-                                required></textarea>
+                                ng-model="contactForm.message" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-info w-100">Send Message</button>
+                        <button type="submit" class="btn btn-danger w-100">Send Message</button>
                     </form>
                 </div>
             </div>
         </section>
     </div>
+
+    <!-- Section User Messages -->
+    <div class="container my-5">
+        <h3 class="text-center">Your Messages</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center mt-3">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Message</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="message in userMessages">
+                        <td>{{$index + 1}}</td>
+                        <td>{{message.message}}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm me-2" ng-click="openEditModal(message)">
+                                Edit
+                            </button>
+                            <button class="btn btn-danger btn-sm" ng-click="deleteMessage(message._id)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Edit Message Modal -->
+    <div class="modal fade" id="editMessageModal" tabindex="-1" aria-labelledby="editMessageLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editMessageLabel">Edit Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="editMessage" class="form-label">Message</label>
+                            <textarea class="form-control" id="editMessage" rows="5" ng-model="selectedMessage.message"
+                                required></textarea>
+                        </div>
+                        <button type="button" class="btn btn-danger" ng-click="editMessage()"
+                            data-bs-dismiss="modal">
+                            Save Changes
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Notifikasi -->
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="notificationModalLabel">Notifikasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{ modalMessage }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Konfirmasi -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="confirmModalLabel">{{ confirmModalTitle }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{ modalMessage }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-success" ng-click="confirmAction()" data-bs-dismiss="modal">Ya, Lanjutkan</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -137,15 +177,17 @@
             <li><a href=""><ion-icon name="logo-instagram"></ion-icon></a></li>
         </ul>
         <ul class="menu">
-            <li><a href="">Kebijakan Privasi</a></li>
-            <li><a href="">Ketentuan Layanan</a></li>
-            <li><a href="contact.html">Hubungi Kami</a></li>
+            <li><a href="">Privacy Policy</a></li>
+            <li><a href="">Terms of Service</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
         </ul>
         <p>&copy; 2024 Dietry. All rights reserved.</p>
     </footer>
 
-    <!-- Link Bootstrap JS and Popper.js (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="/contactController.js"></script>
+
 </body>
 
 </html>
