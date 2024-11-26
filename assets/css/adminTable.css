@@ -1,6 +1,12 @@
-body, html {
+body,
+html {
     height: 100%;
     background-image: url(images/page.jpg);
     background-size: cover;
     background-position: center;
+}
+
+.modal #editUsername:focus,
+.modal #editEmail:focus {
+    box-shadow: 0 2px 20px rgb(253, 124, 124);
 }
