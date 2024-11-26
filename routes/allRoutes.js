@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const { authenticateUser } = require('../middleware/authuser');
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -22,7 +23,7 @@ router.get("/class_cooking", (req, res) => {
     res.sendFile(path.join(__dirname, '../view/class_cooking.html'));
 });
 
-router.get("/contact", (req, res) => {
+router.get("/contact", authenticateUser,(req, res) => {
     res.sendFile(path.join(__dirname, '../view/contact.html'));
 });
 
