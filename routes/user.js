@@ -1,6 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../model/user.js');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const router = express.Router();
 
 // Post: Login 
@@ -22,7 +24,10 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ success: false, message: 'Invalid email or password' });
         }
 
-        res.status(200).json({ success: true, message: 'Login successful' });
+        const token = jwt.sign({ userId: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        
+        return res.status(200).json({ success: true, message: 'Login successful', token });
 
     } catch (error) {
         console.log(error);
@@ -127,5 +132,6 @@ router.delete('/deleteUser/:id', async (req, res) => {
         res.status(500).json({ success: false, message: 'Server error' });
     }
 });
+
 
 module.exports = router;
