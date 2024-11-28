@@ -21,6 +21,7 @@
                     <th scope="col">No</th>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Passwrod</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -29,6 +30,7 @@
                     <th scope="row">{{$index + 1}}</th>
                     <td>{{user.username}}</td>
                     <td>{{user.email}}</td>
+                    <td></td>
                     <td>
                         <button class="btn btn-warning" ng-click="editUser(user)">Edit</button>
                         <button class="btn btn-danger" ng-click="deleteUser(user._id)">Delete</button>
@@ -58,6 +60,10 @@
                             <input type="email" id="editEmail" class="form-control" ng-model="userToEdit.email"
                                 required>
                         </div>
+                        <div class="mb-3">
+                            <label for="editPassword" class="form-label">New Password</label>
+                            <input type="password" id="editPassword" class="form-control" ng-model="userToEdit.password" required>
+                        </div>                        
                         <button type="submit" class="btn btn-danger">Update</button>
                     </form>
                 </div>

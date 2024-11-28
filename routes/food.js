@@ -4,16 +4,20 @@ const Food = require('../model/food');
 
 // POST: Tambahin Food
 router.post('/', async (req, res) => {
-    const { title, image, rating,description, category, url } = req.body;
+    const { title, image, rating, description, category, url } = req.body;
 
     try {
         const newFood = new Food({ title, image, rating, description, category, url });
         const savedFood = await newFood.save();
         res.status(201).json(savedFood);
     } catch (err) {
+        if (err.name === 'ValidationError') {
+            return res.status(400).json({ error: 'Validation failed', details: err.errors });
+        }
         res.status(400).json({ error: 'Failed to add food', details: err });
     }
 });
+
 
 // Get: Lihat Food
 router.get('/', async (req, res) => {

@@ -159,4 +159,5 @@ angular.module('classCookingApp', [])
         
 
         $scope.getUserClasses();
+
     });

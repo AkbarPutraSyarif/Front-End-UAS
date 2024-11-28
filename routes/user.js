@@ -90,10 +90,14 @@ router.get('/getUsers', async (req, res) => {
 // Put: Update data user
 router.put('/updateUser/:id', async (req, res) => {
     const userId = req.params.id;
-    const { username, email } = req.body;
+    const { username, email, password } = req.body;
 
-    if (!username || !email) {
+    if (!username || !email || !password) {
         return res.status(400).json({ success: false, message: 'Username and email are required' });
+    }
+
+    if (password.length < 3) {
+        return res.status(400).json({ success: false, message: 'Password must be at least 3 characters long' });
     }
 
     try {
@@ -106,6 +110,12 @@ router.put('/updateUser/:id', async (req, res) => {
         user.username = username;
         user.email = email;
 
+        // Update password hanya jika diisi
+        if (password && password.trim() !== '') {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(password, salt);
+        }
+
         await user.save();
 
         res.status(200).json({ success: true, message: 'User updated successfully', user });
@@ -114,6 +124,8 @@ router.put('/updateUser/:id', async (req, res) => {
         res.status(500).json({ success: false, message: 'Server error' });
     }
 });
+
+
 
 // Delete: Hapus data user
 router.delete('/deleteUser/:id', async (req, res) => {
