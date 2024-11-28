@@ -29,8 +29,8 @@
             </div>
             <div class="mb-3">
                 <label for="newImage" class="form-label">Image</label>
-                <input type="text" id="newImage" ng-model="newImage" class="form-control"
-                    placeholder="Images Url / Assets" required>
+                <input type="url" id="newImage" ng-model="newImage" class="form-control"
+                    placeholder="Images Url " required>
             </div>
             <div class="mb-3">
                 <label for="newRating" class="form-label">Rating</label>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="editImage" class="form-label">Image URL</label>
-                            <input type="text" id="editImage" ng-model="editData.image" class="form-control" required>
+                            <input type="url" id="editImage" ng-model="editData.image" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="editRating" class="form-label">Rating</label>
@@ -127,6 +127,7 @@
         </div>
     </div>
 
+    <!-- Delete Food -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
