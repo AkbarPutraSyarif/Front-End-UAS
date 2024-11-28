@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" ng-app="classCookingApp">
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,49 +16,31 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
-
-<body>
+ 
+<body ng-controller="classCookingController">
     <!-- Navbar -->
     <nav class="navbar sticky-top navbar-expand-lg">
         <div class="container-fluid">
-            <!-- Logo -->
             <a class="navbar-brand" href="home.html">
                 <img src="images/logo-remove2.png" alt="Logo" width="50">
                 <span>Dietry</span>
             </a>
-
-            <!-- Tombol Collapse untuk Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRestaurant"
                 aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <!-- Konten Navbar -->
             <div class="collapse navbar-collapse" id="navbarRestaurant">
-                <!-- Menu Utama (Tengah) -->
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="food.html">Food Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="class_cooking.html">Class Cooking</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="food.html">Food Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="class_cooking.html">Class Cooking</a></li>
                 </ul>
-
-                <!-- Login dan Search (Kanan) -->
                 <div class="d-flex flex-column flex-lg-row justify-content-end login">
-                    <!-- Account Dropdown -->
                     <div class="dropdown">
-                        <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fa-solid fa-user"></i> <span>Account</span>
                         </a>
                         <ul class="dropdown-menu">
@@ -69,41 +51,56 @@
             </div>
         </div>
     </nav>
-
-    <!-- Section Book Table -->
+ 
+    <!-- Section for Class Cooking -->
     <div class="container my-5">
         <section class="col-md-8 col-lg-6 mx-auto">
             <h2 class="text-center mb-4">Free Class Cooking</h2>
             <div class="row g-4 justify-content-center">
-                <!-- Contact Form -->
+                <!-- Form for Class Cooking -->
                 <div class="col-lg-11">
-                    <form>
+                    <form ng-submit="registerClass()">
                         <div class="mb-3">
                             <label for="name" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name"
+                                ng-model="cookingClassForm.name" required>
                         </div>
                         <div class="mb-3">
                             <label for="date" class="form-label">Select Date</label>
-                            <input type="date" class="form-control" id="date" required>
+                            <input type="date" class="form-control" id="date" ng-model="cookingClassForm.date" required>
                         </div>
                         <div class="mb-3">
                             <label for="time" class="form-label">Select Time</label>
-                            <input type="time" class="form-control" id="time" required>
+                            <input type="text"" class=" form-control" id="time" ng-model="cookingClassForm.time"
+                                ng-change="formatTime(cookingClassForm.time)" placeholder="HH:mm" required>
                         </div>
-                        <button type="submit" class="btn btn-danger w-100">Send Message</button>
+                        <button type="submit" class="btn btn-danger w-100">Register</button>
                     </form>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="class_schedule.html" class="btn btn-primary">View Scheduled Classes</a>
                 </div>
             </div>
         </section>
     </div>
-
-
-
-
+ 
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Notification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ modalMessage }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
     <footer>
         <ul class="sosmed">
             <li><a href=""><ion-icon name="logo-facebook"></ion-icon></a></li>
@@ -117,9 +114,13 @@
         </ul>
         <p>&copy; 2024 Dietry. All rights reserved.</p>
     </footer>
-
-    <!-- Link Bootstrap JS and Popper.js (Optional) -->
+ 
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Application Script -->
+    <script src="/classController.js"></script>
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
-</html>
+ 
+</html> 

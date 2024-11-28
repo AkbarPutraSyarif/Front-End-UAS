@@ -5,7 +5,7 @@ const userRoutes = require('./routes/user.js'); // Rute user
 const foodRoutes = require('./routes/food.js'); // Rute food
 const contactRoutes = require('./routes/contactRoutes'); // Rute Contact Us
 const middleware = require('./middleware/middleware.js'); // Middleware
-const cookingClassRoutes = require('./routes/cookingClass');
+const cookingClassRoutes = require('./routes/class.js');
 
 const app = express();
 
@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost:27017/Lifestyle', { useNewUrlParser: true,
 app.use('/', generalRoutes);
 app.use('/api', userRoutes);
 app.use('/api/food', foodRoutes);
-app.use('/api/cookingClass', cookingClassRoutes);
+app.use('/api/classCooking', cookingClassRoutes);
 app.use('/api/contact', contactRoutes);
 
 

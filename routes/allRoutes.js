@@ -19,7 +19,7 @@ router.get("/about", (req, res) => {
     res.sendFile(path.join(__dirname, '../view/about.html'));
 });
 
-router.get("/class_cooking", (req, res) => {
+router.get("/class_cooking",authenticateUser, (req, res) => {
     res.sendFile(path.join(__dirname, '../view/class_cooking.html'));
 });
 

@@ -1,84 +1,79 @@
 const express = require('express');
 const CookingClass = require('../model/class');
-const User = require('../model/user');
-const { isAuthenticated } = require('../middleware/authMiddleware');
+const { authenticateUser } = require('../middleware/authuser');
 const router = express.Router();
 
-// Create: Mendaftar kelas memasak
-router.post('/', isAuthenticated, async (req, res) => {
-    const { name, email, date, time } = req.body;
+// Register for a cooking class
+router.post('/book', authenticateUser, async (req, res) => {
+    const { name, date, time } = req.body;
+ 
+    if (!name || !date || !time) {
+        return res.status(400).json({ success: false, message: 'All fields are required.' });
+    }
+   
+    const email = req.user.email;
+    const newClass = new CookingClass({ name, email, date, time });
+    await newClass.save();
+ 
+    res.status(201).json({ success: true, message: 'Successfully registered for the class.' });
+});
 
+// Get user classes
+router.get('/classes', authenticateUser, async (req, res) => {
     try {
-        // Validasi email user terdaftar
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({ success: false, message: 'Email not registered' });
+        const messages = await CookingClass.find({ email: req.user.email }).sort({ createdAt: -1 });
+        res.status(200).json(messages);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching your messages', error });
+    }
+});
+
+
+// Update class details
+router.put('/update/:id', authenticateUser, async (req, res) => {
+    try {
+        const classId = req.params.id;
+        const { name, date, time } = req.body;
+
+        if (!name || !date || !time) {
+            return res.status(400).json({ success: false, message: 'All fields are required.' });
         }
 
-        // Buat kelas
-        const cookingClass = new CookingClass({
+        const updatedClass = await CookingClass.findOneAndUpdate(
+            { _id: classId, userId: req.user._id }, 
+            { name, date, time },
+            { new: true }
+        );
+
+        if (!updatedClass) {
+            return res.status(404).json({ success: false, message: 'Class not found or unauthorized.' });
+        }
+
+        res.status(200).json({ success: true, message: 'Class updated successfully.', data: updatedClass });
+    } catch (error) {
+        console.error('Error updating class:', error);
+        res.status(500).json({ success: false, message: 'Server error while updating class.' });
+    }
+});
+
+// Delete a class
+router.delete('/delete/:id', authenticateUser, async (req, res) => {
+    try {
+        const classId = req.params.id;
+
+        const deletedClass = await CookingClass.findOneAndDelete({
+            _id: classId,
             userId: req.user._id,
-            name,
-            email,
-            date,
-            time
         });
-        await cookingClass.save();
 
-        res.status(201).json({ success: true, message: 'Cooking class registered', cookingClass });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Server error' });
-    }
-});
-
-// Read: Melihat kelas yang sudah didaftarkan user
-router.get('/', isAuthenticated, async (req, res) => {
-    try {
-        const classes = await CookingClass.find({ userId: req.user._id });
-        res.status(200).json({ success: true, classes });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Server error' });
-    }
-});
-
-// Update: Mengganti jadwal kelas
-router.put('/:id', isAuthenticated, async (req, res) => {
-    const { date, time } = req.body;
-
-    try {
-        const cookingClass = await CookingClass.findById(req.params.id);
-
-        if (!cookingClass || cookingClass.userId.toString() !== req.user._id.toString()) {
-            return res.status(404).json({ success: false, message: 'Class not found' });
+        if (!deletedClass) {
+            return res.status(404).json({ success: false, message: 'Class not found or unauthorized.' });
         }
 
-        cookingClass.date = date || cookingClass.date;
-        cookingClass.time = time || cookingClass.time;
-        await cookingClass.save();
-
-        res.status(200).json({ success: true, message: 'Class updated', cookingClass });
+        res.status(200).json({ success: true, message: 'Class registration cancelled successfully.' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Server error' });
-    }
-});
-
-// Delete: Menghapus jadwal kelas
-router.delete('/:id', isAuthenticated, async (req, res) => {
-    try {
-        const cookingClass = await CookingClass.findById(req.params.id);
-
-        if (!cookingClass || cookingClass.userId.toString() !== req.user._id.toString()) {
-            return res.status(404).json({ success: false, message: 'Class not found' });
-        }
-
-        await cookingClass.deleteOne();
-        res.status(200).json({ success: true, message: 'Class deleted' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Server error' });
+        console.error('Error deleting class:', error);
+        res.status(500).json({ success: false, message: 'Server error while deleting class.' });
     }
 });
 
