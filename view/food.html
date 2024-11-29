@@ -20,42 +20,24 @@
 <body ng-controller="foodController">
     <nav class="navbar sticky-top navbar-expand-lg">
         <div class="container-fluid">
-            <!-- Logo -->
             <a class="navbar-brand" href="home.html">
                 <img src="images/logo-remove2.png" alt="Logo" width="50">
                 <span>Dietry</span>
             </a>
-
-            <!-- Tombol Collapse untuk Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRestaurant"
                 aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Konten Navbar -->
             <div class="collapse navbar-collapse" id="navbarRestaurant">
-                <!-- Menu Utama (Tengah) -->
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="food.html">Food Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="class_cooking.html">Class Cooking</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="food.html">Food Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="class_cooking.html">Class Cooking</a></li>
                 </ul>
-
-                <!-- Login dan Search (Kanan) -->
                 <div class="d-flex flex-column flex-lg-row justify-content-end login">
-                    <!-- Account Dropdown -->
                     <div class="dropdown">
                         <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -74,21 +56,34 @@
         </div>
     </nav>
 
-    <!-- Search Food -->
+    <!-- Search, Filter, Sort Bar -->
     <div class="collapse" id="searchBar">
         <div class="container py-3">
-            <form class="d-flex justify-content-center">
-                <input type="text" id="search"class="form-control w-50" placeholder="Search for food..." 
-                       ng-model="searchQuery" aria-label="Search">
+            <form class="d-flex justify-content-center mb-3">
+                <input type="text" id="search" class="form-control w-50" placeholder="Search for food..."
+                    ng-model="searchQuery" aria-label="Search">
             </form>
+            <div class="d-flex justify-content-center gap-3">
+                <!-- Filter -->
+                <select class="form-select w-auto" ng-model="selectedCategory"
+                    ng-options="category for category in categories">
+                    <option value="">All Categories</option>
+                </select>
+                <!-- Sort -->
+                <select class="form-select w-auto" ng-model="sortOrder" ng-change="sortFoods(sortOrder)">
+                    <option value="">Sort By</option>
+                    <option value="asc">Title (A-Z)</option>
+                    <option value="desc">Title (Z-A)</option>
+                </select>
+            </div>
         </div>
     </div>
-    
+
     <!-- Food Menu -->
     <section class="container py-5">
         <h1 class="text-center mb-5">Our Food Menu</h1>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 py-4">
-            <div class="col" ng-repeat="food in foods | filter: { title: searchQuery }">
+            <div class="col" ng-repeat="food in filteredFoods() | filter: { title: searchQuery }">
                 <div class="card h-100">
                     <img ng-src="{{ food.image }}" class="card-img-top gambar" alt="{{ food.title }}">
                     <div class="card-body">
@@ -104,8 +99,7 @@
             </div>
         </div>
     </section>
-    
-    
+
     <footer>
         <ul class="sosmed">
             <li><a href=""><ion-icon name="logo-facebook"></ion-icon></a></li>
@@ -120,7 +114,7 @@
         <p>&copy; 2024 Dietry. All rights reserved.</p>
     </footer>
 
-    <!-- Link Bootstrap JS and Popper.js (Optional) -->
+    <!-- Link Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="/foodController.js"></script>
