@@ -4,6 +4,8 @@ app.controller('foodController', function ($scope, $http) {
     $scope.foods = [];
     $scope.categories = ['Vegan', 'Kalori', 'Gluten-Free', 'Vitamin', 'Rendah Lemak', 'Protein'];
     $scope.newCategory = '';
+    $scope.selectedCategory = ''; // For filter
+    $scope.sortOrder = '';
 
     // Select category
     $scope.addCategory = function () {
@@ -50,6 +52,7 @@ app.controller('foodController', function ($scope, $http) {
         const editModal = new bootstrap.Modal(document.getElementById('editModal'));
         editModal.show();
     };
+
     $scope.updateFood = function () {
         $http.put(`/api/food/${$scope.editData._id}`, $scope.editData)
             .then(response => {
@@ -63,7 +66,7 @@ app.controller('foodController', function ($scope, $http) {
             .catch(error => {
                 console.error('Error updating food:', error);
             });
-    };    
+    };
 
     // Delete Food dan Modal (Message)
     $scope.deleteFood = function (id) {
@@ -87,6 +90,35 @@ app.controller('foodController', function ($scope, $http) {
         }
     };
 
+    // Sort Foods
+    $scope.sortFoods = function (order) {
+        $scope.sortOrder = order;
+    };
 
+    // Filter foods by category
+    $scope.filterByCategory = function (category) {
+        $scope.selectedCategory = category;
+    };
+
+    // Get filtered and sorted foods
+    $scope.filteredFoods = function () {
+        let filtered = $scope.foods;
+
+        // Apply category filter
+        if ($scope.selectedCategory) {
+            filtered = filtered.filter(food => food.category === $scope.selectedCategory);
+        }
+
+        // Apply sort order
+        if ($scope.sortOrder === 'asc') {
+            filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
+        } else if ($scope.sortOrder === 'desc') {
+            filtered = filtered.sort((a, b) => b.title.localeCompare(a.title));
+        }
+
+        return filtered;
+    };
+
+    // Fetch foods on page load
     $scope.getFoods();
 });
