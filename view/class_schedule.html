@@ -115,8 +115,13 @@
                             <input type="date" id="editDate" class="form-control" ng-model="selectedClass.date">
                         </div>
                         <div class="mb-3">
-                            <label for="time" class="form-label">Select Time</label>
-                            <input type="text" id="time" class="form-control" ng-model="selectedClass.time">
+                            <label for="editTime" class="form-label">Waktu</label>
+                            <select id="editTime" class="form-select" ng-model="selectedClass.time">
+                                <option value="10:00">10:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="16:00">16:00</option>
+                            </select>
                         </div>
                     </form>
                 </div>

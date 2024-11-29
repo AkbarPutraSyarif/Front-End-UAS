@@ -16,6 +16,13 @@ const cookingClassSchema = new mongoose.Schema({
     time: {
         type: String,
         required: [true, 'Time is required'],
+        validate: {
+            validator: function (value) {
+                // Regex for HH:mm format (24-hour clock)
+                return /^([01]\d|2[0-3]):([0-5]\d)$/.test(value);
+            },
+            message: 'Time must be in the format HH:mm (24-hour format)'
+        }
     }
 });
 

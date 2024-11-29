@@ -37,12 +37,19 @@ angular.module('classCookingApp', [])
                 $scope.showNotificationModal("Token tidak ditemukan. Silakan login.");
                 return;
             }
-
+        
             if (!$scope.cookingClassForm.name || !$scope.cookingClassForm.date || !$scope.cookingClassForm.time) {
                 $scope.showNotificationModal("Harap isi semua kolom pendaftaran.");
                 return;
             }
-
+        
+            // Validasi format time (HH:mm)
+            const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+            if (!timeRegex.test($scope.cookingClassForm.time)) {
+                $scope.showNotificationModal("Format waktu tidak valid. Gunakan format HH:mm (contoh: 14:30).");
+                return;
+            }
+        
             $http.post('/api/classCooking/book', $scope.cookingClassForm, {
                 headers: { Authorization: `Bearer ${token}` }
             }).then(function (response) {
@@ -93,6 +100,13 @@ angular.module('classCookingApp', [])
                 return;
             }
         
+            // Validasi format time (HH:mm)
+            const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+            if (!timeRegex.test($scope.selectedClass.time)) {
+                $scope.showNotificationModal("Format waktu tidak valid. Gunakan format HH:mm (contoh: 14:30).");
+                return;
+            }
+        
             $http.put(`/api/classCooking/update/${$scope.selectedClass._id}`, 
                 $scope.selectedClass,
                 { headers: { Authorization: `Bearer ${token}` } }
@@ -106,6 +120,7 @@ angular.module('classCookingApp', [])
                 $scope.showNotificationModal(error.data.message || "Gagal memperbarui jadwal.");
             });
         };
+        
 
         // Delete: menghapus data
         $scope.deleteClass = function (classId) {
@@ -116,7 +131,6 @@ angular.module('classCookingApp', [])
                 return;
             }
         
-            $scope.showConfirmModal("Konfirmasi Hapus", "Apakah Anda yakin ingin membatalkan pendaftaran kelas ini?", function () {
                 $http.delete(`/api/classCooking/delete/${classId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 }).then(function (response) {
@@ -127,7 +141,6 @@ angular.module('classCookingApp', [])
                     console.error("Error deleting class:", error);
                     $scope.showNotificationModal(error.data.message || "Gagal membatalkan kelas.");
                 });
-            });
         };
 
         $scope.getUserClasses();
