@@ -24,20 +24,27 @@ angular.module('adminApp', [])
     // Update data
     $scope.editUser = function(user) {
         $scope.userToEdit = angular.copy(user);
+        $scope.userToEdit.password = ''; // Kosongkan password saat membuka modal
         const modalElement = new bootstrap.Modal(document.getElementById('editUserModal'));
         modalElement.show();
     };
+    
     $scope.updateUser = function() {
         const userId = $scope.userToEdit._id;
         const updatedUser = {
             username: $scope.userToEdit.username,
-            email: $scope.userToEdit.email
+            email: $scope.userToEdit.email,
         };
-
+    
+        // Sertakan password baru jika diubah
+        if ($scope.userToEdit.password) {
+            updatedUser.password = $scope.userToEdit.password;
+        }
+    
         $http.put('/api/updateUser/' + userId, updatedUser)
             .then(function(response) {
                 if (response.data.success) {
-                    window.location.href = '/admin/loginUser.html'
+                    window.location.href = '/admin/loginUser.html';
                     const index = $scope.users.findIndex(user => user._id === userId);
                     if (index !== -1) {
                         $scope.users[index] = response.data.user;
@@ -51,6 +58,7 @@ angular.module('adminApp', [])
                 $scope.showModal('Error updating user');
             });
     };
+    
 
     // Menghapus pengguna
     $scope.deleteUser = function(userId) {
