@@ -40,14 +40,16 @@ router.put('/update/:id', authenticateUser, async (req, res) => {
         }
 
         const updatedClass = await CookingClass.findOneAndUpdate(
-            { _id: classId, userId: req.user._id }, 
+            { _id: classId, email: req.user.email }, 
             { name, date, time },
             { new: true }
         );
+        
 
         if (!updatedClass) {
             return res.status(404).json({ success: false, message: 'Class not found or unauthorized.' });
         }
+        
 
         res.status(200).json({ success: true, message: 'Class updated successfully.', data: updatedClass });
     } catch (error) {
