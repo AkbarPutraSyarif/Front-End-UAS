@@ -108,16 +108,15 @@
                     <form>
                         <div class="mb-3">
                             <label for="editName" class="form-label">Nama</label>
-                            <input type="text" id="editName" class="form-control" ng-model="cookingClassForm.name">
+                            <input type="text" id="editName" class="form-control" ng-model="selectedClass.name">
                         </div>
                         <div class="mb-3">
                             <label for="editDate" class="form-label">Tanggal</label>
-                            <input type="date" id="editDate" class="form-control" ng-model="cookingClassForm.date">
+                            <input type="date" id="editDate" class="form-control" ng-model="selectedClass.date">
                         </div>
                         <div class="mb-3">
                             <label for="time" class="form-label">Select Time</label>
-                            <input type="text" class=" form-control" id="time" ng-model="cookingClassForm.time"
-                                ng-change="formatTime(cookingClassForm.time)" placeholder="HH:mm" required>
+                            <input type="text" id="time" class="form-control" ng-model="selectedClass.time">
                         </div>
                     </form>
                 </div>
