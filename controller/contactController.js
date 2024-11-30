@@ -3,9 +3,9 @@ angular.module('contactApp', [])
         $scope.contactForm = {};
         $scope.userMessages = [];
         $scope.selectedMessage = {};
-        $scope.modalMessage = ""; 
-        $scope.confirmAction = null; 
-        $scope.confirmModalTitle = ""; 
+        $scope.modalMessage = "";
+        $scope.confirmAction = null;
+        $scope.confirmModalTitle = "";
 
         const getToken = () => localStorage.getItem('authToken');
 
@@ -67,11 +67,21 @@ angular.module('contactApp', [])
             });
         };
 
+        // Mengambil data user
+        $http.get('/api/getUsers')
+            .then(function (response) {
+                $scope.users = response.data.users;
+            })
+            .catch(function (error) {
+                console.error('Error fetching user data:', error);
+                $scope.showModal('Error fetching user data');
+        });
+
         // Update data user
         $scope.openEditModal = function (message) {
-            $scope.selectedMessage = angular.copy(message); 
+            $scope.selectedMessage = angular.copy(message);
             const editModal = new bootstrap.Modal(document.getElementById('editMessageModal'));
-            editModal.show(); 
+            editModal.show();
         };
         $scope.editMessage = function () {
             const token = getToken();
@@ -85,7 +95,7 @@ angular.module('contactApp', [])
                 return;
             }
 
-            $http.put(`/api/contact/update/${$scope.selectedMessage._id}`, 
+            $http.put(`/api/contact/update/${$scope.selectedMessage._id}`,
                 { message: $scope.selectedMessage.message },
                 { headers: { Authorization: `Bearer ${token}` } }
             ).then(function (response) {

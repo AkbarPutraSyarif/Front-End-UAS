@@ -33,13 +33,13 @@
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="food.html">Food Menu</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="class_cooking.html">Class Cooking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="class_cooking.html" style="font-weight: 600;">Class Cooking</a></li>
                 </ul>
-                <div class="d-flex flex-column flex-lg-row justify-content-end login">
+                <div class="d-flex flex-column flex-lg-row justify-content-end login" ng-repeat="user in users">
                     <div class="dropdown">
                         <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> <span>Account</span>
+                            <i class="fa-solid fa-user"></i> <span>{{user.email}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/">Logout</a></li>
@@ -69,6 +69,7 @@
                         <div class="mb-3">
                             <label for="time" class="form-label">Select Time</label>
                             <select id="time" class="form-select" ng-model="cookingClassForm.time" required>
+                                <option value="" disabled selected>Select Time</option>
                                 <option value="10:00">10:00</option>
                                 <option value="12:00">12:00</option>
                                 <option value="14:00">14:00</option>

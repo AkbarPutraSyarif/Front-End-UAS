@@ -18,7 +18,7 @@ async function fetchAndRenderFoods() {
             const cardHTML = `
                 <div class="col">
                     <div class="card h-100 shadow-sm">
-                        <img src="${food.image}" class="card-img-top" alt="${food.title}">
+                        <img src="${food.image}" class="card-img-top" alt="${food.title}" ">
                         <div class="card-body">
                             <h5 class="card-title">${food.title}</h5>
                             <p class="card-text">${food.description}</p>

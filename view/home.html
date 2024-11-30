@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="adminApp">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,7 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body>
+<body ng-controller="AdminController">
     <!-- Navbar -->
     <nav class="navbar sticky-top navbar-expand-lg">
         <div class="container-fluid">
@@ -31,7 +31,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarRestaurant">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="home.html" style="font-weight: 600;">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="food.html">Food Menu</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
@@ -41,7 +41,7 @@
                     <div class="dropdown">
                         <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> <span>Account</span>
+                            <i class="fa-solid fa-user"></i> <span ng-repeat="user in users">{{user.email}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/">Logout</a></li>
@@ -60,27 +60,37 @@
                     <h2 class="title-Opening">Hidup Sehat?</h2>
                     <h4 class="title-second-Opening">Dietry menjaga kesehatan anda</h4>
                     <p>Konsumsi nutrisi yang cukup dan stabil dapat dengan mudah meningkatkan imun tubuh. Apalagi dengan
-                        stabilnya nutrisi, otomatis vitamin yang didapat sangatlah banyak dan menyehatkan bagi tubuh.</p>
-                    <button class="btn btn-danger">JOIN US NOW</button>
+                        stabilnya nutrisi, otomatis vitamin yang didapat sangatlah banyak dan menyehatkan bagi tubuh.
+                    </p>
+                    <a href="class_cooking.html"><button class="btn btn-danger">JOIN US NOW</button></a>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="Opening-gambar">
-                    <img src="images/gluten.jpg" class="img-fluid rounded">
+            <div class="col-md-6 carousel slide" data-bs-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/healthhome.jpg" class="img-fluid rounded">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/healthhome2.jpg" class="img-fluid rounded">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/healthhome3.jpg" class="img-fluid rounded">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Food Section -->
-    <div class="Food-section text-center py-5">
-        <h1 class="mb-5 ">Makanan Sehat yang Delicious</h1>
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="foodCards">
-                <!-- Dynamic content will be inserted here -->
+    <section>
+        <div class="Food-section text-center py-5">
+            <h1 class="mb-5 ">Makanan Sehat yang Delicious</h1>
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="foodCards">
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer Section -->
     <footer>
@@ -92,15 +102,19 @@
         <ul class="menu">
             <li><a href="">Kebijakan Privasi</a></li>
             <li><a href="">Ketentuan Layanan</a></li>
-            <li><a href="contact">Hubungi Kami</a></li>
+            <li><a href="contact.html">Hubungi Kami</a></li>
         </ul>
         <p>&copy; 2024 Dietry. All rights reserved.</p>
     </footer>
 
     <!-- Link Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Angularjs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <!-- Link js untuk styling -->
     <script src="/js/home.js"></script>
+    <!-- Link untuk ngambil user email aj -->
+    <script src="/loginUserController.js"></script>
 </body>
 
 </html>
