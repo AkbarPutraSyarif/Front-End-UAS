@@ -94,8 +94,9 @@ body{
     font-weight: 300;
 }
 
-.Opening-gambar img{
+.carousel-item img{
     width: 1000px;
+    height: 500px;
     max-height: 500px;
     object-fit: fill;
 }
@@ -117,6 +118,19 @@ body{
 
 .Food-section img{
     max-height: 300px;
+}
+
+section .card-title{
+    font-weight: 600;
+}
+
+section .card {
+    transition: transform 0.3s ease;
+}
+
+section .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Footer */
