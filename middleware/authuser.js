@@ -4,7 +4,7 @@ require('dotenv').config();
 function authenticateUser(req, res, next) {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.redirect('/login');
     }
 
     const token = authHeader.split(' ')[1];
@@ -14,7 +14,7 @@ function authenticateUser(req, res, next) {
         req.user = { email: decoded.email, userId: decoded.userId };
         next();
     } catch (error) {
-        return res.status(401).json({ message: 'Invalid token' });
+        return res.redirect('/login');
     }
 }
 
