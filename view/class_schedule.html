@@ -13,15 +13,6 @@
 </head>
 
 <body ng-controller="classCookingController">
-    <!-- Navbar -->
-    <nav class="navbar sticky-top navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="home.html">
-                <img src="images/logo-remove2.png" alt="Logo" width="50">
-                <span>Dietry</span>
-            </a>
-        </div>
-    </nav>
 
     <!-- Schedule Section -->
     <div class="container my-5">
@@ -60,7 +51,8 @@
     </div>
 
     <!-- Modal for Notifications -->
-    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -108,16 +100,20 @@
                     <form>
                         <div class="mb-3">
                             <label for="editName" class="form-label">Nama</label>
-                            <input type="text" id="editName" class="form-control" ng-model="cookingClassForm.name">
+                            <input type="text" id="editName" class="form-control" ng-model="selectedClass.name">
                         </div>
                         <div class="mb-3">
                             <label for="editDate" class="form-label">Tanggal</label>
-                            <input type="date" id="editDate" class="form-control" ng-model="cookingClassForm.date">
+                            <input type="date" id="editDate" class="form-control" ng-model="selectedClass.date">
                         </div>
                         <div class="mb-3">
-                            <label for="time" class="form-label">Select Time</label>
-                            <input type="text" class=" form-control" id="time" ng-model="cookingClassForm.time"
-                                ng-change="formatTime(cookingClassForm.time)" placeholder="HH:mm" required>
+                            <label for="editTime" class="form-label">Waktu</label>
+                            <select id="editTime" class="form-select" ng-model="selectedClass.time">
+                                <option value="10:00">10:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="16:00">16:00</option>
+                            </select>
                         </div>
                     </form>
                 </div>

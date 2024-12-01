@@ -3,25 +3,22 @@ angular.module('contactApp', [])
         $scope.contactForm = {};
         $scope.userMessages = [];
         $scope.selectedMessage = {};
-        $scope.modalMessage = ""; // Untuk pesan notifikasi di modal
-        $scope.confirmAction = null; // Fungsi konfirmasi tindakan
-        $scope.confirmModalTitle = ""; // Judul konfirmasi
+        $scope.modalMessage = "";
+        $scope.confirmAction = null;
+        $scope.confirmModalTitle = "";
 
-        // Fungsi untuk mendapatkan token dari localStorage
         const getToken = () => localStorage.getItem('authToken');
 
-        // Tampilkan modal notifikasi
         $scope.showNotificationModal = function (message) {
             $scope.modalMessage = message;
             const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
             notificationModal.show();
         };
 
-        // Tampilkan modal konfirmasi
         $scope.showConfirmModal = function (title, message, action) {
             $scope.confirmModalTitle = title;
             $scope.modalMessage = message;
-            $scope.confirmAction = action; // Set fungsi tindakan
+            $scope.confirmAction = action;
             const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
             confirmModal.show();
         };
@@ -70,6 +67,46 @@ angular.module('contactApp', [])
             });
         };
 
+        // Mengambil data user
+        $http.get('/api/getUsers')
+            .then(function (response) {
+                $scope.users = response.data.users;
+            })
+            .catch(function (error) {
+                console.error('Error fetching user data:', error);
+                $scope.showModal('Error fetching user data');
+        });
+
+        // Update data user
+        $scope.openEditModal = function (message) {
+            $scope.selectedMessage = angular.copy(message);
+            const editModal = new bootstrap.Modal(document.getElementById('editMessageModal'));
+            editModal.show();
+        };
+        $scope.editMessage = function () {
+            const token = getToken();
+            if (!token) {
+                $scope.showNotificationModal("Token tidak ditemukan. Silakan login.");
+                return;
+            }
+
+            if (!$scope.selectedMessage.message) {
+                $scope.showNotificationModal("Pesan tidak boleh kosong.");
+                return;
+            }
+
+            $http.put(`/api/contact/update/${$scope.selectedMessage._id}`,
+                { message: $scope.selectedMessage.message },
+                { headers: { Authorization: `Bearer ${token}` } }
+            ).then(function (response) {
+                $scope.showNotificationModal("Pesan berhasil diperbarui.");
+                $scope.getUserMessages();
+            }).catch(function (error) {
+                console.error("Error updating message:", error);
+                $scope.showNotificationModal(error.data.message || "Gagal memperbarui pesan.");
+            });
+        };
+
         // Hapus pesan
         $scope.deleteMessage = function (messageId) {
             const token = getToken();
@@ -91,37 +128,5 @@ angular.module('contactApp', [])
             });
         };
 
-
-        $scope.openEditModal = function (message) {
-            $scope.selectedMessage = angular.copy(message); 
-            const editModal = new bootstrap.Modal(document.getElementById('editMessageModal'));
-            editModal.show(); 
-        };
-        // Simpan perubahan pesan
-        $scope.editMessage = function () {
-            const token = getToken();
-            if (!token) {
-                $scope.showNotificationModal("Token tidak ditemukan. Silakan login.");
-                return;
-            }
-
-            if (!$scope.selectedMessage.message) {
-                $scope.showNotificationModal("Pesan tidak boleh kosong.");
-                return;
-            }
-
-            $http.put(`/api/contact/update/${$scope.selectedMessage._id}`, 
-                { message: $scope.selectedMessage.message },
-                { headers: { Authorization: `Bearer ${token}` } }
-            ).then(function (response) {
-                $scope.showNotificationModal("Pesan berhasil diperbarui.");
-                $scope.getUserMessages();
-            }).catch(function (error) {
-                console.error("Error updating message:", error);
-                $scope.showNotificationModal(error.data.message || "Gagal memperbarui pesan.");
-            });
-        };
-
-        // Inisialisasi
         $scope.getUserMessages();
     });
