@@ -20,7 +20,7 @@
 <body ng-controller="foodController">
     <nav class="navbar sticky-top navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="home.html">
                 <img src="images/logo-remove2.png" alt="Logo" width="50">
                 <span>Dietry</span>
             </a>
@@ -33,19 +33,18 @@
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/food" style="font-weight: 600;">Food Menu</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/food"  style="font-weight: 600;">Food Menu</a></li>
                     <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="/class_cooking">Class Cooking</a></li>
                 </ul>
-                <div class="d-flex flex-column flex-lg-row justify-content-end login" ng-repeat="user in users">
+                <div class="d-flex flex-column flex-lg-row justify-content-end login" >
                     <div class="dropdown">
                         <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <i class="fa-solid fa-user"></i> <span>Account</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/login">Login</a></li>
+                            <li><a class="dropdown-item" href="/login">Logout</a></li>
                         </ul>
                     </div>
                     <a href="#" class="btn btn-outline-primary mb-2 mb-lg-0" data-bs-toggle="collapse"
@@ -110,7 +109,7 @@
         <ul class="menu">
             <li><a href="">Kebijakan Privasi</a></li>
             <li><a href="">Ketentuan Layanan</a></li>
-            <li><a href="/contact">Hubungi Kami</a></li>
+            <li><a href="contact.html">Hubungi Kami</a></li>
         </ul>
         <p>&copy; 2024 Dietry. All rights reserved.</p>
     </footer>

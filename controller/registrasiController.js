@@ -47,7 +47,7 @@ angular.module('authApp', [])
                 if (response.data.success) {
                     $scope.showModal('Registration successful!');
                     setTimeout(() => {
-                        window.location.href = '/';
+                        window.location.href = '/home';
                     },3000);
                 } else {
                     $scope.showModal('Registration failed: ' + response.data.message);

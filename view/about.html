@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="adminApp">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,7 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body ng-controller="AdminController">
+<body >
     <!-- Navbar -->
     <nav class="navbar sticky-top navbar-expand-lg">
         <div class="container-fluid">
@@ -55,12 +55,12 @@
                 </ul>
 
                 <!-- Login dan Search (Kanan) -->
-                <div class="d-flex flex-column flex-lg-row justify-content-end login" ng-repeat="user in users">
+                <div class="d-flex flex-column flex-lg-row justify-content-end login">
                     <!-- Account Dropdown -->
                     <div class="dropdown">
                         <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> <span>{{user.email}}</span>
+                            <i class="fa-solid fa-user"></i> <span>Account</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/login">Logout</a></li>
@@ -161,8 +161,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Link angularjs -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <!-- Link controller js -->
-    <script src="/loginUserController.js"></script>
     <!-- Link js styling -->
     <script src="js/about.js"></script>
 </body>
