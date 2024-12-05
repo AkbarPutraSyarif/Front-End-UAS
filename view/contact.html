@@ -34,17 +34,18 @@
                     <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="food.html">Food Menu</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html" style="font-weight: 600;">Contact
+                            Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="class_cooking.html">Class Cooking</a></li>
                 </ul>
-                <div class="d-flex flex-column flex-lg-row justify-content-end login">
+                <div class="d-flex flex-column flex-lg-row justify-content-end login" ng-repeat="user in users">
                     <div class="dropdown">
                         <a href="#" class="btn mb-2 mb-lg-0 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> <span>Account</span>
+                            <i class="fa-solid fa-user"></i> <span>{{user.email}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/">Logout</a></li>
+                            <li><a class="dropdown-item" href="/login">Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -121,8 +122,7 @@
                             <textarea class="form-control" id="editMessage" rows="5" ng-model="selectedMessage.message"
                                 required></textarea>
                         </div>
-                        <button type="button" class="btn btn-danger" ng-click="editMessage()"
-                            data-bs-dismiss="modal">
+                        <button type="button" class="btn btn-danger" ng-click="editMessage()" data-bs-dismiss="modal">
                             Save Changes
                         </button>
                     </form>
@@ -132,41 +132,43 @@
     </div>
 
     <!-- Modal Notifikasi -->
-<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-danger" id="notificationModalLabel">Notifikasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {{ modalMessage }}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="notificationModalLabel">Notifikasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ modalMessage }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal Konfirmasi -->
-<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-danger" id="confirmModalLabel">{{ confirmModalTitle }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {{ modalMessage }}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-success" ng-click="confirmAction()" data-bs-dismiss="modal">Ya, Lanjutkan</button>
+    <!-- Modal Konfirmasi -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="confirmModalLabel">{{ confirmModalTitle }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ modalMessage }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-success" ng-click="confirmAction()" data-bs-dismiss="modal">Ya,
+                        Lanjutkan</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
@@ -177,9 +179,9 @@
             <li><a href=""><ion-icon name="logo-instagram"></ion-icon></a></li>
         </ul>
         <ul class="menu">
-            <li><a href="">Privacy Policy</a></li>
-            <li><a href="">Terms of Service</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="">Kebijakan Privasi</a></li>
+            <li><a href="">Ketentuan Layanan</a></li>
+            <li><a href="contact.html">Hubungi Kami</a></li>
         </ul>
         <p>&copy; 2024 Dietry. All rights reserved.</p>
     </footer>

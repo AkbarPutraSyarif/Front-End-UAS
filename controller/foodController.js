@@ -35,7 +35,7 @@ app.controller('foodController', function ($scope, $http) {
             });
     };
 
-    // Ambil data 
+    // Ambil data makanan
     $scope.getFoods = function () {
         $http.get('/api/food')
             .then(response => {
@@ -45,6 +45,16 @@ app.controller('foodController', function ($scope, $http) {
                 console.error('Error fetching foods:', error);
             });
     };
+
+    // Mengambil data user
+    $http.get('/api/getUsers')
+        .then(function (response) {
+            $scope.users = response.data.users;
+        })
+        .catch(function (error) {
+            console.error('Error fetching user data:', error);
+            $scope.showModal('Error fetching user data');
+    });
 
     // Update data 
     $scope.editFood = function (food) {
@@ -70,7 +80,7 @@ app.controller('foodController', function ($scope, $http) {
 
     // Delete Food dan Modal (Message)
     $scope.deleteFood = function (id) {
-        $scope.foodToDeleteId = id; 
+        $scope.foodToDeleteId = id;
         const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
         deleteModal.show();
     };
@@ -80,7 +90,7 @@ app.controller('foodController', function ($scope, $http) {
             $http.delete(`/api/food/${$scope.foodToDeleteId}`)
                 .then(() => {
                     $scope.foods = $scope.foods.filter(food => food._id !== $scope.foodToDeleteId);
-                    $scope.foodToDeleteId = null; 
+                    $scope.foodToDeleteId = null;
                     const deleteModal = bootstrap.Modal.getInstance(document.getElementById('deleteModal'));
                     deleteModal.hide();
                 })
