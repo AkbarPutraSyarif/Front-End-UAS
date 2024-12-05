@@ -26,7 +26,7 @@ app.use('/api/classCooking', classRoutes);
 app.use('/api/contactAdmin', contactAdminRoutes); 
 app.use('/api/cookingClass', classAdminRoutes);  
 
-
+// Mempersingkat dalam penulisan link
 app.use(express.static(__dirname + '/assets'));
 app.use(express.static(__dirname + '/assets/css'));
 app.use(express.static(__dirname + '/controller'));
