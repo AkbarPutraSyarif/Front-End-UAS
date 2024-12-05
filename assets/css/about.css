@@ -128,8 +128,8 @@ body {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5); /* Warna latar belakang */
-    border-radius: 50%; /* Membuatnya bulat */
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 50%; 
     width: 50px;
     height: 50px;
 }
