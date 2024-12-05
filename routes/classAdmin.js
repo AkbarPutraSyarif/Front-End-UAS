@@ -1,11 +1,11 @@
 const express = require('express');
-const CookingClass = require('../model/class');
+const CookingClass = require('../model/class'); // model
 const router = express.Router();
 
 // Mengambil semua kelas masak
 router.get('/classes', async (req, res) => {
     try {
-        const classes = await CookingClass.find().sort({ createdAt: -1 }); // Mengambil semua kelas masak
+        const classes = await CookingClass.find().sort({ createdAt: -1 }); 
         res.status(200).json(classes);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching cooking classes', error });

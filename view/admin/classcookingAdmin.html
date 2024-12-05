@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="cookingClassApp">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cooking Classes</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    
+    <link rel="shortcut icon" href="/images/logo.jpg" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link CSS -->
     <link rel="stylesheet" href="/adminTable.css">
 </head>
-<body ng-controller="cookingClassController">
 
+<body ng-controller="cookingClassController">
+    <!--  -->
     <div class="container">
         <h1 class="text-center">Cooking Classes List</h1>
         <table class="table table-bordered table-hover">
@@ -39,8 +43,9 @@
         </table>
     </div>
 
-    <!-- Modal for Confirm Deletion -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <!-- Modal untuk munculkan delete -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -58,7 +63,7 @@
         </div>
     </div>
 
-    <!-- Modal for success or failure -->
+    <!-- Modal untuk munculkan success-->
     <div class="modal fade" id="modalResponse" tabindex="-1" aria-labelledby="modalResponseLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -76,8 +81,11 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS (for modal functionality) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Link JS Controller -->
     <script src="/classcookingController.js"></script>
 </body>
 </html>

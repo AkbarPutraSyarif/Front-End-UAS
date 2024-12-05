@@ -1,6 +1,6 @@
 const express = require('express');
-const Contact = require('../model/contact');
-const { authenticateUser } = require('../middleware/authuser.js');
+const Contact = require('../model/contact'); // model
+const { authenticateUser } = require('../middleware/authuser.js'); // middleware
 const router = express.Router();
 
 router.post('/send', authenticateUser, async (req, res) => {

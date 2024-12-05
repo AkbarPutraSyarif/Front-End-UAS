@@ -1,9 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const User = require('../model/user.js');
+const User = require('../model/user.js'); // model ke user.js
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 const router = express.Router();
+require('dotenv').config();
 
 // Post: Login 
 router.post('/login', async (req, res) => {
@@ -124,8 +124,6 @@ router.put('/updateUser/:id', async (req, res) => {
         res.status(500).json({ success: false, message: 'Server error' });
     }
 });
-
-
 
 // Delete: Hapus data user
 router.delete('/deleteUser/:id', async (req, res) => {

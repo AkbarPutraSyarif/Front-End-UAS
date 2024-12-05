@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
         type: String, 
         required: [true, 'Email is required'], 
         unique: true,
+        // validasi bahwa harus berbentuk email
         validate: {
             validator: function(value) {
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);

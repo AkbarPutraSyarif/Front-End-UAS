@@ -29,6 +29,7 @@ angular.module('adminApp', [])
         modalElement.show();
     };
     
+    // Edit user 
     $scope.updateUser = function() {
         const userId = $scope.userToEdit._id;
         const updatedUser = {
@@ -36,7 +37,7 @@ angular.module('adminApp', [])
             email: $scope.userToEdit.email,
         };
     
-        // Sertakan password baru jika diubah
+        // Password harus diisi
         if ($scope.userToEdit.password) {
             updatedUser.password = $scope.userToEdit.password;
         }

@@ -9,12 +9,14 @@ angular.module('contactApp', [])
 
         const getToken = () => localStorage.getItem('authToken');
 
+        // Modal notifikasi
         $scope.showNotificationModal = function (message) {
             $scope.modalMessage = message;
             const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
             notificationModal.show();
         };
 
+        // Modal konfirmasi
         $scope.showConfirmModal = function (title, message, action) {
             $scope.confirmModalTitle = title;
             $scope.modalMessage = message;
