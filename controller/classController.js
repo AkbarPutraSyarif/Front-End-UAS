@@ -9,6 +9,7 @@ angular.module('classCookingApp', [])
 
         const getToken = () => localStorage.getItem('authToken');
 
+        // Modal notifikasi
         $scope.showNotificationModal = function (message) {
             $scope.modalMessage = message;
 
@@ -21,7 +22,7 @@ angular.module('classCookingApp', [])
             }
         };
 
-
+        // Modal konfirmasi
         $scope.showConfirmModal = function (title, message, action) {
             $scope.confirmModalTitle = title;
             $scope.modalMessage = message;

@@ -11,6 +11,7 @@ app.controller('adminController', function($scope) {
     $scope.password = '';
     $scope.modalMessage = ''
 
+    // Modal notifikasi
     $scope.showModal = function (message) {
         $scope.modalMessage = message;
         const modalElement = new bootstrap.Modal(document.getElementById('messageModal'));

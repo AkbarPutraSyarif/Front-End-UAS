@@ -4,7 +4,7 @@ app.controller('foodController', function ($scope, $http) {
     $scope.foods = [];
     $scope.categories = ['Vegan', 'Kalori', 'Gluten-Free', 'Vitamin', 'Rendah Lemak', 'Protein'];
     $scope.newCategory = '';
-    $scope.selectedCategory = ''; // For filter
+    $scope.selectedCategory = ''; 
     $scope.sortOrder = '';
 
     // Select category
@@ -68,7 +68,7 @@ app.controller('foodController', function ($scope, $http) {
             });
     };
 
-    // Delete Food dan Modal (Message)
+    // Delete Food dan Modal message
     $scope.deleteFood = function (id) {
         $scope.foodToDeleteId = id;
         const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
@@ -90,26 +90,26 @@ app.controller('foodController', function ($scope, $http) {
         }
     };
 
-    // Sort Foods
+    // Urutin Foods
     $scope.sortFoods = function (order) {
         $scope.sortOrder = order;
     };
 
-    // Filter foods by category
+    // Fillter untuk kategori food 
     $scope.filterByCategory = function (category) {
         $scope.selectedCategory = category;
     };
 
-    // Get filtered and sorted foods
+    // Ambil kategori
     $scope.filteredFoods = function () {
         let filtered = $scope.foods;
 
-        // Apply category filter
+        // Munculin kategori
         if ($scope.selectedCategory) {
             filtered = filtered.filter(food => food.category === $scope.selectedCategory);
         }
 
-        // Apply sort order
+        // Urutin sesuai nama food
         if ($scope.sortOrder === 'asc') {
             filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
         } else if ($scope.sortOrder === 'desc') {
@@ -119,6 +119,5 @@ app.controller('foodController', function ($scope, $http) {
         return filtered;
     };
 
-    // Fetch foods on page load
     $scope.getFoods();
 });

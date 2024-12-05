@@ -4,13 +4,16 @@ angular.module('authApp', [])
         $scope.password = '';
         $scope.modalMessage = '';
 
+        // Modal untuk notifikasi
         $scope.showModal = function (message) {
             $scope.modalMessage = message;
             const modalElement = new bootstrap.Modal(document.getElementById('messageModal'));
             modalElement.show();
         };
 
+        // Logika login
         $scope.login = function () {
+            // email dan password harus diisi
             if (!$scope.email || !$scope.password) {
                 $scope.showModal('Please fill in both fields!');
                 return;

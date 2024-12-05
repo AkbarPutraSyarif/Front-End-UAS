@@ -1,5 +1,5 @@
 const express = require('express');
-const Contact = require('../model/contact'); // Gunakan model 'contact'
+const Contact = require('../model/contact'); // model
 const router = express.Router();
 
 // Mengambil semua kontak
@@ -12,7 +12,7 @@ router.get('/contacts', async (req, res) => {
     }
 });
 
-// Menghapus kontak berdasarkan ID
+// Menghapus kontak 
 router.delete('/delete/:id', async (req, res) => {
     try {
         const contactId = req.params.id;

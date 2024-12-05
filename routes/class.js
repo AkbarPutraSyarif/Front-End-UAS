@@ -1,6 +1,6 @@
 const express = require('express');
-const CookingClass = require('../model/class');
-const { authenticateUser } = require('../middleware/authuser');
+const CookingClass = require('../model/class'); // model
+const { authenticateUser } = require('../middleware/authuser'); // middleware
 const router = express.Router();
 
 // Register for a cooking class

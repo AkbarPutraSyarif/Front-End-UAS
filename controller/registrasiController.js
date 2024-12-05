@@ -15,27 +15,32 @@ angular.module('authApp', [])
  
     // Fungsi register
     $scope.register = function () {
+        // harus diisi jika belum
         if (!$scope.username || !$scope.email || !$scope.password || !$scope.passwordConfirm) {
             $scope.showModal('Please fill in all fields!');
             return;
         }
-       
+        
+        // validasi harus berbentuk email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test($scope.email)) {
             $scope.showModal('Please enter a valid email address!');
             return;
         }
-   
+        
+        // validasi password dibawah 3 maka error
         if ($scope.password.length < 3) {
             $scope.showModal('Password must be at least 3 characters long!');
             return;
         }
-   
+        
+        // validasi password harsu sama dengan password confirm
         if ($scope.password !== $scope.passwordConfirm) {
             $scope.showModal('Passwords do not match!');
             return;
         }
-   
+        
+        // Masukkin data
         const userData = {
             username: $scope.username,
             email: $scope.email,
@@ -47,7 +52,7 @@ angular.module('authApp', [])
                 if (response.data.success) {
                     $scope.showModal('Registration successful!');
                     setTimeout(() => {
-                        window.location.href = '/home';
+                        window.location.href = '/login';
                     },3000);
                 } else {
                     $scope.showModal('Registration failed: ' + response.data.message);

@@ -6,15 +6,10 @@ const foodRoutes = require('./routes/food.js'); // Rute food
 const classRoutes = require('./routes/class.js'); // Rute food
 const contactRoutes = require('./routes/contactRoutes'); // Rute Contact Us
 const middleware = require('./middleware/middleware.js'); // Middleware
-
+const contactAdminRoutes = require('./routes/contactAdmin.js'); // rute contact admin
+const classAdminRoutes = require('./routes/classAdmin.js'); // rute class admin
 const app = express();
 
-const contactAdminRoutes = require('./routes/contactAdmin.js'); // Import routes untuk admin contact
-const classAdminRoutes = require('./routes/classAdmin.js'); // Import routes untuk admin contact
-
-// Tambahkan route admin
-app.use('/api/contact', contactAdminRoutes); // Mengarahkan route kontak ke contactRoutes.js// Middleware 
-app.use('/api/cookingClass', classAdminRoutes); // Mengarahkan route kontak ke contactRoutes.js// Middleware 
 middleware(app);
 
 // MongoDB 
@@ -27,7 +22,9 @@ app.use('/', generalRoutes);
 app.use('/api', userRoutes);
 app.use('/api/food', foodRoutes);
 app.use('/api/contact', contactRoutes);
-app.use('/api/classCooking', classRoutes); 
+app.use('/api/classCooking', classRoutes);
+app.use('/api/contactAdmin', contactAdminRoutes); 
+app.use('/api/cookingClass', classAdminRoutes);  
 
 
 app.use(express.static(__dirname + '/assets'));
