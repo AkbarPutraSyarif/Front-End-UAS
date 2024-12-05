@@ -67,16 +67,6 @@ angular.module('contactApp', [])
             });
         };
 
-        // Mengambil data user
-        $http.get('/api/getUsers')
-            .then(function (response) {
-                $scope.users = response.data.users;
-            })
-            .catch(function (error) {
-                console.error('Error fetching user data:', error);
-                $scope.showModal('Error fetching user data');
-        });
-
         // Update data user
         $scope.openEditModal = function (message) {
             $scope.selectedMessage = angular.copy(message);
