@@ -9,18 +9,37 @@ angular.module('contactApp', [])
                 console.error('Error retrieving contacts:', error);
             });
 
+        // Menyimpan ID kontak yang akan dihapus
+        $scope.contactToDelete = null;
+
+        // Fungsi untuk mengonfirmasi penghapusan
+        $scope.confirmDelete = function(contactId) {
+            // Menyimpan ID kontak yang akan dihapus
+            $scope.contactToDelete = contactId;
+            // Menampilkan modal konfirmasi
+            const modal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+            modal.show();
+        };
+
         // Fungsi untuk menghapus kontak
-        $scope.deleteContact = function(contactId) {
-            if (confirm('Are you sure you want to delete this contact?')) {
-                $http.delete('/api/contact/delete/' + contactId)
+        $scope.deleteContact = function() {
+            if ($scope.contactToDelete) {
+                $http.delete('/api/contact/delete/' + $scope.contactToDelete)
                     .then(function(response) {
                         // Menghapus kontak yang dihapus dari daftar di UI
-                        $scope.contacts = $scope.contacts.filter(contact => contact._id !== contactId);
-                        alert('Contact deleted successfully!');
+                        $scope.contacts = $scope.contacts.filter(contact => contact._id !== $scope.contactToDelete);
+                        $scope.modalMessage = 'Contact deleted successfully!';
+                        const modalResponse = new bootstrap.Modal(document.getElementById('modalResponse'));
+                        modalResponse.show();
+                        // Menutup modal konfirmasi setelah penghapusan
+                        const confirmModal = bootstrap.Modal.getInstance(document.getElementById('confirmDeleteModal'));
+                        confirmModal.hide();
                     })
                     .catch(function(error) {
                         console.error('Error deleting contact:', error);
-                        alert('Error deleting contact.');
+                        $scope.modalMessage = 'Error deleting contact.';
+                        const modalResponse = new bootstrap.Modal(document.getElementById('modalResponse'));
+                        modalResponse.show();
                     });
             }
         };

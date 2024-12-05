@@ -10,9 +10,11 @@ const middleware = require('./middleware/middleware.js'); // Middleware
 const app = express();
 
 const contactAdminRoutes = require('./routes/contactAdmin.js'); // Import routes untuk admin contact
+const classAdminRoutes = require('./routes/classAdmin.js'); // Import routes untuk admin contact
 
 // Tambahkan route admin
 app.use('/api/contact', contactAdminRoutes); // Mengarahkan route kontak ke contactRoutes.js// Middleware 
+app.use('/api/cookingClass', classAdminRoutes); // Mengarahkan route kontak ke contactRoutes.js// Middleware 
 middleware(app);
 
 // MongoDB 
