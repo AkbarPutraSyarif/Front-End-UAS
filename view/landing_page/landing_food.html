@@ -66,14 +66,14 @@
             <div class="d-flex justify-content-center gap-3">
                 <!-- Filter -->
                 <select class="form-select w-auto" ng-model="selectedCategory"
-                    ng-options="category for category in categories">
-                    <option value="">All Categories</option>
+                    ng-options="category for category in categories"id="category">
+                    <option value="">Semua kategori</option>
                 </select>
                 <!-- Sort -->
-                <select class="form-select w-auto" ng-model="sortOrder" ng-change="sortFoods(sortOrder)">
-                    <option value="">Sort By</option>
-                    <option value="asc">Title (A-Z)</option>
-                    <option value="desc">Title (Z-A)</option>
+                <select class="form-select w-auto" ng-model="sortOrder" ng-change="sortFoods(sortOrder)" id="sort">
+                    <option value="">Diurutkan berdasarkan</option>
+                    <option value="asc">Judul (A-Z)</option>
+                    <option value="desc">Judul (Z-A)</option>
                 </select>
             </div>
         </div>
@@ -81,7 +81,7 @@
 
     <!-- Food Menu -->
     <section class="container py-5">
-        <h1 class="text-center mb-5">Our Food Menu</h1>
+        <h1 class="text-center mb-5">Food Menu</h1>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 py-4">
             <div class="col" ng-repeat="food in filteredFoods() | filter: { title: searchQuery }">
                 <div class="card h-100">
@@ -91,7 +91,7 @@
                         <p class="card-text justify-content-center">
                             <i class="fa-solid fa-star"></i> Rating: {{ food.rating }}
                         </p>
-                        <p class="card-text">Category: {{ food.category }}</p>
+                        <p class="card-text">Kategori: {{ food.category }}</p>
                         <p class="card-text">{{ food.description }}</p>
                         <a ng-href="{{ food.url }}" target="_blank" class="btn btn-danger">Read More</a>
                     </div>

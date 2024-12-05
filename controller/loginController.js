@@ -15,7 +15,7 @@ angular.module('authApp', [])
         $scope.login = function () {
             // email dan password harus diisi
             if (!$scope.email || !$scope.password) {
-                $scope.showModal('Please fill in both fields!');
+                $scope.showModal('Harus diisi semua');
                 return;
             }
 
@@ -29,12 +29,12 @@ angular.module('authApp', [])
                     if (response.data.success) {
                         localStorage.setItem('authToken', response.data.token);
 
-                        $scope.showModal('Login successful!');
+                        $scope.showModal('Login berhasil!');
                         setTimeout(() => {
                             window.location.href = '/home';
                         }, 2000);
                     } else {
-                        $scope.showModal('Login failed: ' + response.data.message);
+                        $scope.showModal('Login gagal: ' + response.data.message);
                     }
                 })
                 .catch(function (error) {
