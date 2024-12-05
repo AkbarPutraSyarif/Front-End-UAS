@@ -9,6 +9,7 @@ angular.module('classCookingApp', [])
 
         const getToken = () => localStorage.getItem('authToken');
 
+        // Modal notifikasi
         $scope.showNotificationModal = function (message) {
             $scope.modalMessage = message;
 
@@ -21,7 +22,7 @@ angular.module('classCookingApp', [])
             }
         };
 
-
+        // Modal konfirmasi
         $scope.showConfirmModal = function (title, message, action) {
             $scope.confirmModalTitle = title;
             $scope.modalMessage = message;
@@ -72,16 +73,6 @@ angular.module('classCookingApp', [])
                 $scope.showNotificationModal("Gagal mengambil daftar kelas.");
             });
         };
-
-        // Mengambil data user
-        $http.get('/api/getUsers')
-            .then(function (response) {
-                $scope.users = response.data.users;
-            })
-            .catch(function (error) {
-                console.error('Error fetching user data:', error);
-                $scope.showModal('Error fetching user data');
-            });
 
         // Update: Edit data user
         $scope.openEditModal = function (classData) {

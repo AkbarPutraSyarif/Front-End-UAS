@@ -9,12 +9,14 @@ angular.module('contactApp', [])
 
         const getToken = () => localStorage.getItem('authToken');
 
+        // Modal notifikasi
         $scope.showNotificationModal = function (message) {
             $scope.modalMessage = message;
             const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
             notificationModal.show();
         };
 
+        // Modal konfirmasi
         $scope.showConfirmModal = function (title, message, action) {
             $scope.confirmModalTitle = title;
             $scope.modalMessage = message;
@@ -66,16 +68,6 @@ angular.module('contactApp', [])
                 $scope.showNotificationModal("Gagal mengambil pesan.");
             });
         };
-
-        // Mengambil data user
-        $http.get('/api/getUsers')
-            .then(function (response) {
-                $scope.users = response.data.users;
-            })
-            .catch(function (error) {
-                console.error('Error fetching user data:', error);
-                $scope.showModal('Error fetching user data');
-        });
 
         // Update data user
         $scope.openEditModal = function (message) {

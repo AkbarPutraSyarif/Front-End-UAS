@@ -3,6 +3,7 @@ const path = require('path');
 const { authenticateUser } = require('../middleware/authuser');
 const router = express.Router();
 
+// router untuk link website 
 router.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, '../view/landing_page/landing_page.html'));
 });
