@@ -17,8 +17,8 @@ angular.module('adminApp', [])
             $scope.users = response.data.users;
         })
         .catch(function(error) {
-            console.error('Error fetching user data:', error);
-            $scope.showModal('Error fetching user data');
+            console.error('Error saat fetch data user:', error);
+            $scope.showModal('Error saat fetch data user');
         });
 
     // Update data
@@ -51,7 +51,7 @@ angular.module('adminApp', [])
                         $scope.users[index] = response.data.user;
                     }
                 } else {
-                    $scope.showModal('Error updating user: ' + response.data.message);
+                    $scope.showModal('Error saat update user: ' + response.data.message);
                 }
             })
             .catch(function(error) {

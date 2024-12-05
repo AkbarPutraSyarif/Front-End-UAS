@@ -1,5 +1,5 @@
 const express = require('express');
-const Contact = require('../model/contact'); // model
+const Contact = require('../model/contact.js'); // model
 const { authenticateUser } = require('../middleware/authuser.js'); // middleware
 const router = express.Router();
 
@@ -8,7 +8,7 @@ router.post('/send', authenticateUser, async (req, res) => {
         const { name, message } = req.body;
 
         if (!name || !message) {
-            return res.status(400).json({ success: false, message: 'Name and message are required.' });
+            return res.status(400).json({ success: false, message: 'Nama dan message diperlukan' });
         }
 
         const email = req.user.email;
@@ -16,10 +16,10 @@ router.post('/send', authenticateUser, async (req, res) => {
         const newMessage = new Contact({ name, email, message });
         await newMessage.save();
 
-        res.status(201).json({ success: true, message: 'Your message has been sent successfully.' });
+        res.status(201).json({ success: true, message: 'berhasil terkirim' });
     } catch (error) {
-        console.error('Error in saving contact message:', error);
-        res.status(500).json({ success: false, message: 'Server error while saving message.' });
+        console.error('Terjadi error saat menyimpan data', error);
+        res.status(500).json({ success: false, message: 'Terjadi kesalahan server' });
     }
 });
 
@@ -29,7 +29,7 @@ router.get('/messages', authenticateUser, async (req, res) => {
         const messages = await Contact.find({ email: req.user.email }).sort({ createdAt: -1 });
         res.status(200).json(messages);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching your messages', error });
+        res.status(500).json({ message: 'Terjadi error saat fetch di contact ', error });
     }
 });
 
@@ -40,7 +40,7 @@ router.put('/update/:id', authenticateUser, async (req, res) => {
         const { message } = req.body;
 
         if (!message) {
-            return res.status(400).json({ success: false, message: 'Message content is required.' });
+            return res.status(400).json({ success: false, message: 'Message diperlukan' });
         }
 
         const updatedMessage = await Contact.findOneAndUpdate(
@@ -50,13 +50,13 @@ router.put('/update/:id', authenticateUser, async (req, res) => {
         );
 
         if (!updatedMessage) {
-            return res.status(404).json({ success: false, message: 'Message not found or unauthorized.' });
+            return res.status(404).json({ success: false, message: 'Message tidak ditemukan' });
         }
 
-        res.status(200).json({ success: true, message: 'Message updated successfully.', data: updatedMessage });
+        res.status(200).json({ success: true, message: 'Berhasil diupdate', data: updatedMessage });
     } catch (error) {
-        console.error('Error updating message:', error);
-        res.status(500).json({ success: false, message: 'Server error while updating message.' });
+        console.error('Error dalam update message', error);
+        res.status(500).json({ success: false, message: 'Server terjadi error' });
     }
 });
 
@@ -72,13 +72,13 @@ router.delete('/delete/:id', authenticateUser, async (req, res) => {
         });
 
         if (!deletedMessage) {
-            return res.status(404).json({ success: false, message: 'Message not found or unauthorized.' });
+            return res.status(404).json({ success: false, message: 'Message tidak ditemukan' });
         }
 
-        res.status(200).json({ success: true, message: 'Message deleted successfully.' });
+        res.status(200).json({ success: true, message: 'Berhasil menghapus message' });
     } catch (error) {
-        console.error('Error deleting message:', error);
-        res.status(500).json({ success: false, message: 'Server error while deleting message.' });
+        console.error('Terjadi kesalahan saat menghapus', error);
+        res.status(500).json({ success: false, message: 'Server terjadi error' });
     }
 });
 

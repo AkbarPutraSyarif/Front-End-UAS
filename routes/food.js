@@ -12,9 +12,9 @@ router.post('/', async (req, res) => {
         res.status(201).json(savedFood);
     } catch (err) {
         if (err.name === 'ValidationError') {
-            return res.status(400).json({ error: 'Validation failed', details: err.errors });
+            return res.status(400).json({ error: 'Validasi salah', details: err.errors });
         }
-        res.status(400).json({ error: 'Failed to add food', details: err });
+        res.status(400).json({ error: 'Gagal untuk menambahkan food', details: err });
     }
 });
 
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
         const foods = await Food.find();
         res.json(foods);
     } catch (err) {
-        res.status(500).json({ error: 'Failed to fetch foods', details: err });
+        res.status(500).json({ error: 'Terjadi error saat fetch di food', details: err });
     }
 });
 
@@ -39,7 +39,7 @@ router.put('/:id', async (req, res) => {
         );
         res.json(updatedFood);
     } catch (err) {
-        res.status(400).json({ error: 'Failed to update food', details: err });
+        res.status(400).json({ error: 'Gagal mengupdate food', details: err });
     }
 });
 
@@ -47,9 +47,9 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         await Food.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Food deleted successfully' });
+        res.json({ message: 'Berhasil menghapus food' });
     } catch (err) {
-        res.status(500).json({ error: 'Failed to delete food', details: err });
+        res.status(500).json({ error: 'Gagal menghapus food', details: err });
     }
 });
 

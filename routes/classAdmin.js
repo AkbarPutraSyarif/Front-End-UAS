@@ -8,7 +8,7 @@ router.get('/classes', async (req, res) => {
         const classes = await CookingClass.find().sort({ createdAt: -1 }); 
         res.status(200).json(classes);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching cooking classes', error });
+        res.status(500).json({ message: 'Terjadi error saat fetch di cooking class', error });
     }
 });
 
@@ -19,12 +19,12 @@ router.delete('/delete/:id', async (req, res) => {
         const deletedClass = await CookingClass.findByIdAndDelete(classId);
 
         if (!deletedClass) {
-            return res.status(404).json({ message: 'Class not found' });
+            return res.status(404).json({ message: 'Class cooking tidak ditemukan' });
         }
 
-        res.status(200).json({ message: 'Class deleted successfully' });
+        res.status(200).json({ message: 'Berhasil menghapus jadwal' });
     } catch (error) {
-        res.status(500).json({ message: 'Error deleting class', error });
+        res.status(500).json({ message: 'Terjadi kesalahan dalam menghapus', error });
     }
 });
 

@@ -10,7 +10,7 @@ app.controller('foodController', function ($scope, $http) {
     // Select category
     $scope.addCategory = function () {
         if ($scope.newCategory) {
-            console.log('Selected category:', $scope.newCategory);
+            console.log('Pilih kategori:', $scope.newCategory);
         }
     };
 
@@ -31,7 +31,7 @@ app.controller('foodController', function ($scope, $http) {
                 $scope.newTitle = $scope.newDescription = $scope.newCategory = $scope.newImage = $scope.newRating = $scope.newUrl = '';
             })
             .catch(error => {
-                console.error('Error adding food:', error);
+                console.error('Terjadi salah penambahan makanan', error);
             });
     };
 
@@ -42,7 +42,7 @@ app.controller('foodController', function ($scope, $http) {
                 $scope.foods = response.data;
             })
             .catch(error => {
-                console.error('Error fetching foods:', error);
+                console.error('Error saat fetch mengambil data food', error);
             });
     };
 
@@ -64,7 +64,7 @@ app.controller('foodController', function ($scope, $http) {
                 editModal.hide();
             })
             .catch(error => {
-                console.error('Error updating food:', error);
+                console.error('Error saat update food:', error);
             });
     };
 
@@ -85,7 +85,7 @@ app.controller('foodController', function ($scope, $http) {
                     deleteModal.hide();
                 })
                 .catch(error => {
-                    console.error('Error deleting food:', error);
+                    console.error('Error saat delete food:', error);
                 });
         }
     };
