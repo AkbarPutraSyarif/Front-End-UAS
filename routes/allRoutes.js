@@ -4,6 +4,10 @@ const { authenticateUser } = require('../middleware/authuser');
 const router = express.Router();
 
 router.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, '../view/landing_page/landing_page.html'));
+});
+
+router.get("/login", (req, res) => {
     res.sendFile(path.join(__dirname, '../login.html'));
 });
 
@@ -16,7 +20,7 @@ router.get("/home", (req, res) => {
 });
 
 router.get("/about", (req, res) => {
-    res.sendFile(path.join(__dirname, '../view/about.html'));
+    res.sendFile(path.join(__dirname, '../view/landing_page//landing_about.html'));
 });
 
 router.get("/class_cooking",authenticateUser, (req, res) => {
@@ -28,7 +32,7 @@ router.get("/contact", authenticateUser,(req, res) => {
 });
 
 router.get("/food", (req, res) => {
-    res.sendFile(path.join(__dirname, '../view/food.html'));
+    res.sendFile(path.join(__dirname, '../view/landing_page/landing_food.html'));
 });
 
 router.get("/profile", (req, res) => {
