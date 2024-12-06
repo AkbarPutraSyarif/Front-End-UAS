@@ -8,7 +8,7 @@ router.get('/contacts', async (req, res) => {
         const contacts = await Contact.find().sort({ createdAt: -1 });
         res.status(200).json(contacts);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching contacts', error });
+        res.status(500).json({ message: 'Terjadi error saat fetch di contacts', error });
     }
 });
 
@@ -19,12 +19,12 @@ router.delete('/delete/:id', async (req, res) => {
         const deletedContact = await Contact.findByIdAndDelete(contactId);
         
         if (!deletedContact) {
-            return res.status(404).json({ message: 'Contact not found' });
+            return res.status(404).json({ message: 'Contact tidak ditemukan' });
         }
 
-        res.status(200).json({ message: 'Contact deleted successfully' });
+        res.status(200).json({ message: 'Berhasil menghapus contact' });
     } catch (error) {
-        res.status(500).json({ message: 'Error deleting contact', error });
+        res.status(500).json({ message: 'Terjadi error dalam menghapus ', error });
     }
 });
 

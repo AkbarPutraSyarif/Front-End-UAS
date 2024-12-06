@@ -4,7 +4,7 @@ const generalRoutes = require('./routes/allRoutes.js'); // Rute semua
 const userRoutes = require('./routes/user.js'); // Rute user
 const foodRoutes = require('./routes/food.js'); // Rute food
 const classRoutes = require('./routes/class.js'); // Rute food
-const contactRoutes = require('./routes/contactRoutes'); // Rute Contact Us
+const contactRoutes = require('./routes/contact.js'); // Rute Contact Us
 const middleware = require('./middleware/middleware.js'); // Middleware
 const contactAdminRoutes = require('./routes/contactAdmin.js'); // rute contact admin
 const classAdminRoutes = require('./routes/classAdmin.js'); // rute class admin
@@ -26,7 +26,7 @@ app.use('/api/classCooking', classRoutes);
 app.use('/api/contactAdmin', contactAdminRoutes); 
 app.use('/api/cookingClass', classAdminRoutes);  
 
-
+// Mempersingkat dalam penulisan link
 app.use(express.static(__dirname + '/assets'));
 app.use(express.static(__dirname + '/assets/css'));
 app.use(express.static(__dirname + '/controller'));

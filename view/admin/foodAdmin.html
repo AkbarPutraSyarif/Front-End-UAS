@@ -19,7 +19,7 @@
         <h2 class="text-center mb-4">Tambahkan Food</h2>
         <form ng-submit="addFood()">
             <div class="mb-3">
-                <label for="newTitle" class="form-label">Food Title</label>
+                <label for="newTitle" class="form-label">Judul Food</label>
                 <input type="text" id="newTitle" ng-model="newTitle" class="form-control" placeholder="Judul Food"
                     required>
             </div>
@@ -34,19 +34,19 @@
                     required min="1" max="5">
             </div>
             <div class="mb-3">
-                <label for="newDescription" class="form-label">Description food</label>
+                <label for="newDescription" class="form-label">Deskripsi food</label>
                 <input type="text" id="newDescription" ng-model="newDescription" class="form-control"
                     placeholder="Deskripsi food anda" required>
             </div>
             <div class="mb-3">
-                <label for="newCategory" class="form-label">Category</label>
+                <label for="newCategory" class="form-label">Kategori</label>
                 <select id="newCategory" ng-model="newCategory" class="form-select" required>
-                    <option value="" disabled selected>Select a category</option>
+                    <option value="" disabled selected>Pilih kategori</option>
                     <option ng-repeat="category in categories" value="{{ category }}">{{ category }}</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="newUrl" class="form-label">Recipe URL</label>
+                <label for="newUrl" class="form-label">Resep URL</label>
                 <input type="url" id="newUrl" ng-model="newUrl" class="form-control" placeholder="Url resep" required>
             </div>
             <button type="submit" class="btn btn-danger w-100">Add Food</button>
@@ -64,7 +64,7 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="editTitle" class="form-label">Food Title</label>
+                            <label for="editTitle" class="form-label">Judul Food</label>
                             <input type="text" id="editTitle" ng-model="editData.title" class="form-control" required>
                         </div>
                         <div class="mb-3">
@@ -77,19 +77,19 @@
                                 required min="1" max="5">
                         </div>
                         <div class="mb-3">
-                            <label for="editDescription" class="form-label">Description</label>
+                            <label for="editDescription" class="form-label">Deskripsi</label>
                             <input type="text" id="editDescription" ng-model="editData.description" class="form-control"
                                 required>
                         </div>
                         <div class="mb-3">
-                            <label for="editCategory" class="form-label">Category</label>
+                            <label for="editCategory" class="form-label">Kategori</label>
                             <select id="editCategory" ng-model="editCategory" class="form-select" required>
-                                <option value="" disabled selected>Select a category</option>
+                                <option value="" disabled selected>Pilih kategori</option>
                                 <option ng-repeat="category in categories" value="{{ category }}">{{ category }}</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="editUrl" class="form-label">Recipe URL</label>
+                            <label for="editUrl" class="form-label">Resep URL</label>
                             <input type="url" id="editUrl" ng-model="editData.url" class="form-control" required>
                         </div>
                     </form>
@@ -113,9 +113,9 @@
                         <h5 class="card-title">{{ food.title }}</h5>
                         <p class="card-text"><i class="fa-solid fa-star" style="color: yellow;"></i> Rating: {{
                             food.rating }}</p>
-                        <p class="card-text">Category: {{ food.category }}</p>
+                        <p class="card-text">Kategori: {{ food.category }}</p>
                         <p class="card-text">{{ food.description }}</p>
-                        <a ng-href="{{ food.url }}" target="_blank" class="btn btn-danger">View Recipe</a>
+                        <a ng-href="{{ food.url }}" target="_blank" class="btn btn-danger">Lihat resep</a>
                         <button class="btn btn-warning " ng-click="editFood(food)">Edit</button>
                         <button class="btn btn-danger " ng-click="deleteFood(food._id)">Delete</button>
                     </div>

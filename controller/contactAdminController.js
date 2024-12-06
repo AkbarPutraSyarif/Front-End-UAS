@@ -6,7 +6,7 @@ angular.module('contactApp', [])
                 $scope.contacts = response.data; 
             })
             .catch(function(error) {
-                console.error('Error retrieving contacts:', error);
+                console.error('Error mengembalikan data contacts:', error);
             });
 
         $scope.contactToDelete = null;
@@ -24,7 +24,7 @@ angular.module('contactApp', [])
                 $http.delete('/api/contactAdmin/delete/' + $scope.contactToDelete)
                     .then(function(response) {
                         $scope.contacts = $scope.contacts.filter(contact => contact._id !== $scope.contactToDelete);
-                        $scope.modalMessage = 'Contact deleted successfully!';
+                        $scope.modalMessage = 'Contact berhasil dihapus';
                         const modalResponse = new bootstrap.Modal(document.getElementById('modalResponse'));
                         modalResponse.show();
                         const confirmModal = bootstrap.Modal.getInstance(document.getElementById('confirmDeleteModal'));
@@ -32,7 +32,7 @@ angular.module('contactApp', [])
                     })
                     .catch(function(error) {
                         console.error('Error deleting contact:', error);
-                        $scope.modalMessage = 'Error deleting contact.';
+                        $scope.modalMessage = 'Terjadi kesalahan saat menghapus';
                         const modalResponse = new bootstrap.Modal(document.getElementById('modalResponse'));
                         modalResponse.show();
                     });

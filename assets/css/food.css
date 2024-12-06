@@ -85,7 +85,9 @@ body {
     font-size: 1rem;
 }
 
-#search:focus{
+#search:focus,
+#category:focus,
+#sort:focus{
     box-shadow: 0 2px 20px rgb(253, 124, 124);
 }
 

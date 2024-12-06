@@ -17,26 +17,26 @@ angular.module('authApp', [])
     $scope.register = function () {
         // harus diisi jika belum
         if (!$scope.username || !$scope.email || !$scope.password || !$scope.passwordConfirm) {
-            $scope.showModal('Please fill in all fields!');
+            $scope.showModal('Harus diisi semua');
             return;
         }
         
         // validasi harus berbentuk email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test($scope.email)) {
-            $scope.showModal('Please enter a valid email address!');
+            $scope.showModal('Validasi email salah');
             return;
         }
         
         // validasi password dibawah 3 maka error
         if ($scope.password.length < 3) {
-            $scope.showModal('Password must be at least 3 characters long!');
+            $scope.showModal('Password minimal 3 karakter');
             return;
         }
         
         // validasi password harsu sama dengan password confirm
         if ($scope.password !== $scope.passwordConfirm) {
-            $scope.showModal('Passwords do not match!');
+            $scope.showModal('Passwords tidak sama dengan confirm password');
             return;
         }
         
@@ -50,12 +50,12 @@ angular.module('authApp', [])
         $http.post('http://localhost:5000/api/register', userData)
             .then(function (response) {
                 if (response.data.success) {
-                    $scope.showModal('Registration successful!');
+                    $scope.showModal('Registration berhasil');
                     setTimeout(() => {
                         window.location.href = '/login';
                     },3000);
                 } else {
-                    $scope.showModal('Registration failed: ' + response.data.message);
+                    $scope.showModal('Registration gagal: ' + response.data.message);
                 }
             })
             .catch(function (error) {

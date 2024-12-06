@@ -57,18 +57,18 @@
                 <div class="col-lg-11">
                     <form ng-submit="registerClass()">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name"
+                            <label for="name" class="form-label">Username anda</label>
+                            <input type="text" class="form-control" id="name" placeholder="Masukkan usernama anda"
                                 ng-model="cookingClassForm.name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="date" class="form-label">Select Date</label>
+                            <label for="date" class="form-label">Pilih Tanggal</label>
                             <input type="date" class="form-control" id="date" ng-model="cookingClassForm.date" required>
                         </div>
                         <div class="mb-3">
-                            <label for="time" class="form-label">Select Time</label>
+                            <label for="time" class="form-label">Pilih Waktu</label>
                             <select id="time" class="form-select" ng-model="cookingClassForm.time" required>
-                                <option value="" disabled selected>Select Time</option>
+                                <option value="" disabled selected>Pilih waktu</option>
                                 <option value="10:00">10:00</option>
                                 <option value="12:00">12:00</option>
                                 <option value="14:00">14:00</option>
@@ -79,7 +79,7 @@
                     </form>
                 </div>
                 <div class="text-center mt-4">
-                    <a href="class_schedule.html" class="btn btn-primary">View Scheduled Classes</a>
+                    <a href="class_schedule.html" class="btn btn-primary">Lihat jadwal class cooking</a>
                 </div>
             </div>
         </section>
@@ -90,7 +90,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Notification</h5>
+                    <h5 class="modal-title">Notifikasi</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -123,6 +123,6 @@
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <!-- Link JS Controller -->
-    <script src="/classController.js"></script>
+    <script src="/classcookingController.js"></script>
 </body>
 </html>

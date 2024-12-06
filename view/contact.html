@@ -61,16 +61,16 @@
                 <div class="col-lg-11">
                     <form ng-submit="sendMessage()">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name"
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="name" placeholder="Masukkan username anda"
                                 ng-model="contactForm.name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="message" class="form-label">Your Message</label>
-                            <textarea class="form-control" id="message" rows="5" placeholder="Write your message"
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Masukkan message anda"
                                 ng-model="contactForm.message" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-danger w-100">Send Message</button>
+                        <button type="submit" class="btn btn-danger w-100">Kirim Message</button>
                     </form>
                 </div>
             </div>
@@ -79,14 +79,14 @@
 
     <!-- Section User Messages -->
     <div class="container my-5">
-        <h3 class="text-center">Your Messages</h3>
+        <h3 class="text-center">Messages Anda</h3>
         <div class="table-responsive">
             <table class="table table-bordered text-center mt-3">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Message</th>
-                        <th>Actions</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

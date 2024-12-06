@@ -1,4 +1,4 @@
-
+// fungsi untuk merubah item card makanan
 function getRandomItems(array, count) {
     const shuffled = array.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
@@ -6,14 +6,15 @@ function getRandomItems(array, count) {
 
 async function fetchAndRenderFoods() {
     try {
+        // Mengambil dari database food
         const response = await fetch('/api/food'); 
         const foods = await response.json();
-
+        // Melakukan pengacakan gambar
         const randomFoods = getRandomItems(foods, 3);
-
+        // Mengambil berdasarkan id 
         const foodCardsContainer = document.getElementById('foodCards');
         foodCardsContainer.innerHTML = ''; 
-
+        
         randomFoods.forEach(food => {
             const cardHTML = `
                 <div class="col">
